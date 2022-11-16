@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace RoutingServer
 {
-    internal class Class1
+    public class JCD : RoutingService
     {
+        public string GetStations()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
