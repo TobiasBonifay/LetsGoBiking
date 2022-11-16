@@ -1,0 +1,9 @@
+/RoutingServer/.vs/
+/RoutingServer/bin/Debug/
+
+/FrontEnd/.idea/
+/FrontEnd/shelf/
+/FrontEnd/workspace.xml
+/FrontEnd/httpRequests/
+/FrontEnd/dataSources/
+/FrontEnd/dataSources.local.xml
