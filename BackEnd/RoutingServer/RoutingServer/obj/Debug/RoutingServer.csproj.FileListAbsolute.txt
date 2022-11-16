@@ -1,0 +1,7 @@
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\RoutingServer.dll.config
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\RoutingServer.dll
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\RoutingServer.pdb
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.AssemblyReference.cache
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.CoreCompileInputs.cache
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.dll
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.pdb
