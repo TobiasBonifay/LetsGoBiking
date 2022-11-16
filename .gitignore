@@ -1,6 +1,7 @@
 .vs/*
 /RoutingServer/.vs/*
 /RoutingServer/bin/Debug/
+/BackEnd/.vs/*
 
 /FrontEnd/.idea/
 /FrontEnd/shelf/
