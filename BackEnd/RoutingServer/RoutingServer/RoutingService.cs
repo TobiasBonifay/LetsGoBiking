@@ -10,7 +10,9 @@ namespace RoutingServer
     {
         public string GetStations()
         {
-            throw new NotImplementedException();
+            JCD jcd = new JCD();
+            Task task = jcd.InitializeConnexion();
+            return jcd.GetContracts();
         }
     }
 }
