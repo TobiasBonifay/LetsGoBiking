@@ -15,6 +15,9 @@ namespace RoutingServer
         [OperationContract]
         string GetStations();
 
+        [OperationContract]
+        string GetWayInstructions();
+
 
     }
 

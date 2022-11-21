@@ -112,6 +112,12 @@
     <Compile Include="IRoutingService.cs" />
     <Compile Include="JCDClasses\Contrat.cs" />
     <Compile Include="JCDClasses\Station.cs" />
+    <Compile Include="ORS.cs" />
+    <Compile Include="ORSClasses\features.cs" />
+    <Compile Include="ORSClasses\properties.cs" />
+    <Compile Include="ORSClasses\segments.cs" />
+    <Compile Include="ORSClasses\steps.cs" />
+    <Compile Include="ORSClasses\StreetMapResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutingService.cs" />
   </ItemGroup>
