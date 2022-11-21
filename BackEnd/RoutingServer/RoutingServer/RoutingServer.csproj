@@ -115,6 +115,7 @@
     <Compile Include="JCDClasses\Station.cs" />
     <Compile Include="ORS.cs" />
     <Compile Include="ORSClasses\features.cs" />
+    <Compile Include="ORSClasses\GPSPosition.cs" />
     <Compile Include="ORSClasses\properties.cs" />
     <Compile Include="ORSClasses\segments.cs" />
     <Compile Include="ORSClasses\steps.cs" />
