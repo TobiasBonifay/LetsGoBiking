@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RoutingServer
@@ -11,7 +12,7 @@ namespace RoutingServer
         public string GetStations()
         {
             JCD jcd = new JCD();
-            Task task = jcd.InitializeConnexion();
+            jcd.InitializeConnexion().Wait();
             return jcd.GetContracts();
             
         }
@@ -19,7 +20,7 @@ namespace RoutingServer
         public string GetWayInstructions()
         {
             ORS ors = new ORS();
-            Task task = ors.GetWayInstructions();
+            ors.GetWayInstructions().Wait();
             return ors.GetWayInstrictionsResponse();
         }
     }
