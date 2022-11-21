@@ -4,6 +4,11 @@
 /BackEnd/.vs/*
 BackEnd/RoutingServer/.vs/*
 
+Proxy/RoutingServer/.vs/*
+/Proxy/RoutingServer/.vs/*
+/Proxy/.vs/*
+/Proxy/bin/Debug/
+
 /FrontEnd/.idea/
 /FrontEnd/shelf/
 /FrontEnd/workspace.xml
