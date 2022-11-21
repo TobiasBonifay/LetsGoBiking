@@ -4,10 +4,10 @@
 /BackEnd/.vs/*
 BackEnd/RoutingServer/.vs/*
 
-Proxy/RoutingServer/.vs/*
-/Proxy/RoutingServer/.vs/*
-/Proxy/.vs/*
-/Proxy/bin/Debug/
+Proxy/Proxy/RoutingServer/.vs/*
+/Proxy/Proxy/RoutingServer/.vs/*
+/Proxy/Proxy/.vs/*
+/Proxy/Proxy/bin/Debug/
 
 /FrontEnd/.idea/
 /FrontEnd/shelf/
