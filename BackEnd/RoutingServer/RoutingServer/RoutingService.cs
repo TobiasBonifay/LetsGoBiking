@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoutingServer.ProxyService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,19 +10,31 @@ namespace RoutingServer
 {
     public class RoutingService : IRoutingService
     {
+        private ProxyServiceClient proxyClient; // allows to communicate with JCDecaux
+        private ORS ors;
+
+        public RoutingService()
+        {
+            proxyClient = new ProxyServiceClient();
+            ors = new ORS();
+        }
+
         public string GetStations()
         {
-            JCD jcd = new JCD();
-            jcd.InitializeConnexion().Wait();
-            return jcd.GetContracts();
+            return proxyClient.GetAllContracts();
             
         }
 
         public string GetWayInstructions()
         {
-            ORS ors = new ORS();
             ors.GetWayInstructions().Wait();
             return ors.GetWayInstrictionsResponse();
+        }
+
+        public string GetGPSCoordsFromAddress(string address)
+        {
+            ors.FindGPSCoords(address);
+            return ors.GetGPSPositionFound();
         }
     }
 }

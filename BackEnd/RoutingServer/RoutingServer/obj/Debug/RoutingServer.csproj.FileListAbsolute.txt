@@ -50,3 +50,4 @@ C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Te
 C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.ValueTuple.xml
 C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.CopyComplete
+E:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\XsdGeneratedCode\GeneratedXsdTypes.cs

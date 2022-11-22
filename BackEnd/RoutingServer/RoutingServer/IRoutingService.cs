@@ -18,6 +18,9 @@ namespace RoutingServer
         [OperationContract]
         string GetWayInstructions();
 
+        [OperationContract]
+        string GetGPSCoordsFromAddress(string address);
+
 
     }
 

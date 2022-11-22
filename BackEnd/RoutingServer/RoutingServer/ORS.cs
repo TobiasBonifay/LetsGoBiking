@@ -1,5 +1,4 @@
-﻿using RoutingServer.JCDClasses;
-using RoutingServer.ORSClasses;
+﻿using RoutingServer.ORSClasses;
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
@@ -14,6 +13,8 @@ namespace RoutingServer
 {
     public class ORS
     {
+        private HttpClient httpClient;
+
         // Foot walking way
         string baseFootWalkingAddress = "https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
 
@@ -24,15 +25,19 @@ namespace RoutingServer
         private string wayInstructionsResponse = "";
         private GPSPosition gpsPositionFound;
 
-        public async void GetGPSPosition(string adress)
+        public ORS()
         {
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(baseGPSAddress + adress + baseGPSParams);
+            httpClient = new HttpClient();
+        }
+
+        public async void FindGPSCoords(string adress)
+        {
+            HttpResponseMessage response = await httpClient.GetAsync(baseGPSAddress + adress + baseGPSParams);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
             List<GPSPosition> gpsPositions = JsonSerializer.Deserialize<List<GPSPosition>>(responseBody);
-            gpsPositionFound = gpsPositions[0];
+            gpsPositionFound = gpsPositions[0]; // we take the first address found
         }
 
         public string GetGPSPositionFound() { 
@@ -42,11 +47,10 @@ namespace RoutingServer
 
         public async Task GetWayInstructions()
         {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Clear();
-            client.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
+            httpClient.DefaultRequestHeaders.Clear();
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
 
-            HttpResponseMessage response = await client.GetAsync(baseFootWalkingAddress + "&start=8.681495,49.41461&end=8.687872,49.420318");
+            HttpResponseMessage response = await httpClient.GetAsync(baseFootWalkingAddress + "&start=8.681495,49.41461&end=8.687872,49.420318");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
