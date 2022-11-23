@@ -13,7 +13,7 @@ namespace Proxy
     {
 
         private static HttpClient client;
-        public static string apiKey = "apiKey=1de1c64691bd95053065293721d5b0cfd3e5c226";
+        private static string apiKey = "apiKey=1de1c64691bd95053065293721d5b0cfd3e5c226";
 
         private static List<Contrat> contrats;
 
@@ -32,12 +32,12 @@ namespace Proxy
 
         public static string GetContracts()
         {
-            string response = "";
+            StringBuilder response = new StringBuilder();
             foreach (Contrat c in contrats)
             {
-                response += c.name + "\n";
+                response.Append(c.name).Append("\n");
             }
-            return response;
+            return response.ToString();
         }
 
     }
