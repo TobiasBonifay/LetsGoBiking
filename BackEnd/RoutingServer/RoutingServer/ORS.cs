@@ -19,25 +19,26 @@ namespace RoutingServer
         string baseFootWalkingAddress = "https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
 
         // GPS Position
-        private string baseGPSAddress = "https://nominatim.openstreetmap.org/search?q=";
-        private string baseGPSParams = "&format=json&polygon=1&addressdetails=1";
+        private string baseGPSAddress = "https://api.openrouteservice.org/geocode/autocomplete?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
+        //private string baseGPSParams = "&format=json&polygon=1&addressdetails=1";
 
         private string wayInstructionsResponse = "";
-        private GPSPosition gpsPositionFound;
+        private GeoCodeResponse gpsPositionFound;
 
         public ORS()
         {
             httpClient = new HttpClient();
         }
 
-        public async void FindGPSCoords(string adress)
+        public async void FindGPSCoords(string address)
         {
-            HttpResponseMessage response = await httpClient.GetAsync(baseGPSAddress + adress + baseGPSParams);
+            httpClient.DefaultRequestHeaders.Clear();
+            HttpResponseMessage response = await httpClient.GetAsync(baseGPSAddress + address);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
-            List<GPSPosition> gpsPositions = JsonSerializer.Deserialize<List<GPSPosition>>(responseBody);
-            gpsPositionFound = gpsPositions[0]; // we take the first address found
+            GeoCodeResponse gpsPositions = JsonSerializer.Deserialize<GeoCodeResponse>(responseBody);
+            gpsPositionFound = gpsPositions; // we take the first address found
         }
 
         public string GetGPSPositionFound() { 

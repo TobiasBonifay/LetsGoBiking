@@ -8,6 +8,7 @@ Proxy/RoutingServer/.vs/*
 /Proxy/RoutingServer/.vs/*
 /Proxy/.vs/*
 /Proxy/bin/Debug/
+BackEnd/RoutingServer/RoutingServer/obj/Debug/*
 
 /FrontEnd/.idea/
 /FrontEnd/shelf/

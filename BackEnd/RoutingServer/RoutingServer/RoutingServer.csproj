@@ -117,6 +117,9 @@
     <Compile Include="IRoutingService.cs" />
     <Compile Include="ORS.cs" />
     <Compile Include="ORSClasses\features.cs" />
+    <Compile Include="ORSClasses\GeoCodeFeature.cs" />
+    <Compile Include="ORSClasses\GeoCodeGeometry.cs" />
+    <Compile Include="ORSClasses\GeoCodeResponse.cs" />
     <Compile Include="ORSClasses\GPSPosition.cs" />
     <Compile Include="ORSClasses\properties.cs" />
     <Compile Include="ORSClasses\segments.cs" />
