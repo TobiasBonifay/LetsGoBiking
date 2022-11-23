@@ -1,40 +1,34 @@
 ﻿using RoutingServer.ProxyService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace RoutingServer
 {
     public class RoutingService : IRoutingService
     {
-        private ProxyServiceClient proxyClient; // allows to communicate with JCDecaux
-        private ORS ors;
+        private readonly ProxyServiceClient _proxyClient; // allows to communicate with JCDecaux
+        private readonly ORS _ors;
 
         public RoutingService()
         {
-            proxyClient = new ProxyServiceClient();
-            ors = new ORS();
+            _proxyClient = new ProxyServiceClient();
+            _ors = new ORS();
         }
 
         public string GetStations()
         {
-            return proxyClient.GetAllContracts();
+            return _proxyClient.GetAllContracts();
             
         }
 
         public string GetWayInstructions()
         {
-            ors.GetWayInstructions().Wait();
-            return ors.GetWayInstrictionsResponse();
+            _ors.GetWayInstructions().Wait();
+            return _ors.GetWayInstrictionsResponse();
         }
 
         public string GetGPSCoordsFromAddress(string address)
         {
-            ors.FindGPSCoords(address);
-            return ors.GetGPSPositionFound();
+            _ors.FindGPSCoords(address);
+            return _ors.GetGPSPositionFound();
         }
     }
 }
