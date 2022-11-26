@@ -14,9 +14,9 @@ namespace RoutingServer
 
         // GPS Position
         private string baseGPSAddress = "https://api.openrouteservice.org/geocode/autocomplete?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
-        //private string baseGPSParams = "&format=json&polygon=1&addressdetails=1";
+        
 
-        private string wayInstructionsResponse = "";
+        private string wayInstructionsResponse;
         private GeoCodeResponse gpsPositionFound;
 
         public ORS()
