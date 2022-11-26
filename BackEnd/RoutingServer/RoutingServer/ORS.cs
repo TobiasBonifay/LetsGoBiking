@@ -1,11 +1,5 @@
 ﻿using RoutingServer.ORSClasses;
-using System;
-using System.Collections.Generic;
-using System.Device.Location;
-using System.Linq;
 using System.Net.Http;
-using System.Security.Policy;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -30,7 +24,7 @@ namespace RoutingServer
             httpClient = new HttpClient();
         }
 
-        public async void FindGPSCoords(string address)
+        public async Task FindGPSCoords(string address)
         {
             httpClient.DefaultRequestHeaders.Clear();
             HttpResponseMessage response = await httpClient.GetAsync(baseGPSAddress + address);
@@ -38,20 +32,21 @@ namespace RoutingServer
             string responseBody = await response.Content.ReadAsStringAsync();
 
             GeoCodeResponse gpsPositions = JsonSerializer.Deserialize<GeoCodeResponse>(responseBody);
-            gpsPositionFound = gpsPositions; // we take the first address found
+            gpsPositionFound = gpsPositions;
         }
 
-        public string GetGPSPositionFound() { 
+        public string GetGPSPositionFound()
+        {
             if (gpsPositionFound == null) { return "address not found"; }
-            return gpsPositionFound.ToString();
+            return  gpsPositionFound.features[0].geometry.coordinates[0].ToString().Replace(',', '.') + "," + gpsPositionFound.features[0].geometry.coordinates[1].ToString().Replace(',', '.'); // we take the first address found
         }
 
-        public async Task GetWayInstructions()
+        public async Task GetWayInstructions(string from, string to)
         {
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
 
-            HttpResponseMessage response = await httpClient.GetAsync(baseFootWalkingAddress + "&start=8.681495,49.41461&end=8.687872,49.420318");
+            HttpResponseMessage response = await httpClient.GetAsync(baseFootWalkingAddress + "&start=" + from + "&end=" + to);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 

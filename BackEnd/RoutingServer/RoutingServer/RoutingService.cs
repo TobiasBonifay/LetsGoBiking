@@ -19,15 +19,15 @@ namespace RoutingServer
             
         }
 
-        public string GetWayInstructions()
+        public string GetWayInstructions(string fromCoords, string toCoords)
         {
-            _ors.GetWayInstructions().Wait();
+            _ors.GetWayInstructions(fromCoords, toCoords).Wait();
             return _ors.GetWayInstrictionsResponse();
         }
 
         public string GetGPSCoordsFromAddress(string address)
         {
-            _ors.FindGPSCoords(address);
+            _ors.FindGPSCoords(address).Wait();
             return _ors.GetGPSPositionFound();
         }
     }

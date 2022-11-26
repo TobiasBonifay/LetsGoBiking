@@ -8,9 +8,7 @@ namespace RoutingServer.ORSClasses
 {
     public class GeoCodeGeometry
     {
-        public double[] coordinates { get; set; }
+        public List<double> coordinates { get; set; } // coordinates[0] == Lon   coordinates[1] == Lat
 
-        public double getLon() { return coordinates[0]; }
-        public double getLat() { return coordinates[1];}
     }
 }
