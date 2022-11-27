@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace RoutingServer.ORSClasses
 {
-    public class properties
+    public class Step
     {
-        public List<segments> segments { get; set; }
+        public double distance { get; set; }
+        public double duration { get; set; }
+        public string instruction { get; set; }
     }
 }

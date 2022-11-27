@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace RoutingServer.ORSClasses
 {
-    public class features
+    public class Property
     {
-        public List<properties> properties { get; set; }
+        public List<Segment> segments { get; set; }
     }
 }

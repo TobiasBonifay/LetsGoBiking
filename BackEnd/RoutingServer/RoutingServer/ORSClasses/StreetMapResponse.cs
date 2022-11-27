@@ -8,6 +8,6 @@ namespace RoutingServer.ORSClasses
 {
     public class StreetMapResponse
     {
-        public List<features> features { get; set; }
+        public List<Feature> features { get; set; }
     }
 }

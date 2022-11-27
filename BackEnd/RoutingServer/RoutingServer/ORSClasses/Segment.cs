@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace RoutingServer.ORSClasses
 {
-    public class GPSPosition
+    public class Segment
     {
-        public string lat { get; set; }
-        public string lon { get; set; }
-        public string display_name { get; set; }
+        public double distance { get; set; }
+        public double duration { get; set; }
+        public List<Step> steps { get; set; }
     }
 }

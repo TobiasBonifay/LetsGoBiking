@@ -1,4 +1,5 @@
 ﻿using RoutingServer.ORSClasses;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -50,7 +51,17 @@ namespace RoutingServer
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
-            wayInstructionsResponse = responseBody;
+            RoadServiceResponse roadServiceResponse = JsonSerializer.Deserialize<RoadServiceResponse>(responseBody);
+            Segment segment = roadServiceResponse.features[0].properties.segments[0];
+            List<Step> steps = segment.steps;
+
+            wayInstructionsResponse += "Distance: " + segment.distance + "m \n";
+            wayInstructionsResponse += "Duration: " + segment.duration + "sec \n";
+            foreach (Step s in steps)
+            {
+                wayInstructionsResponse += s.instruction + "\n";
+            }
+
         }
 
         public string GetWayInstrictionsResponse()
