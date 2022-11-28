@@ -24,7 +24,6 @@
   <Metadata>
     <MetadataFile FileName="ProxyService.wsdl" MetadataType="Wsdl" ID="2df8870a-5bcd-4fd8-9db3-2466ab5ded9a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Proxy/ProxyService/?wsdl" />
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="f3fba7d1-9c47-46d1-99ce-108af83ee18f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Proxy/ProxyService/?xsd=xsd0" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="8838d942-fd06-4655-8dc4-3f2604f27415" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Proxy/ProxyService/?xsd=xsd2" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="4e6d4554-cf43-4448-ba5a-e8b1d106a0c2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Proxy/ProxyService/?xsd=xsd1" />
   </Metadata>
   <Extensions>

@@ -42,6 +42,9 @@ namespace RoutingServer
             return  gpsPositionFound.features[0].geometry.coordinates[0].ToString().Replace(',', '.') + "," + gpsPositionFound.features[0].geometry.coordinates[1].ToString().Replace(',', '.'); // we take the first address found
         }
 
+        /*
+         * Takes coords on entry
+         */
         public async Task GetWayInstructions(string from, string to)
         {
             httpClient.DefaultRequestHeaders.Clear();

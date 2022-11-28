@@ -133,16 +133,10 @@
     <None Include="Connected Services\ProxyService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ProxyService\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\ProxyService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ProxyService\ProxyService.wsdl" />
-    <None Include="Connected Services\ProxyService\RoutingServer.ProxyService.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

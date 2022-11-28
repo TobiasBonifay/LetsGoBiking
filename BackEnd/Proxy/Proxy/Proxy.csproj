@@ -77,7 +77,9 @@
     <Compile Include="GenericProxyCache.cs" />
     <Compile Include="IProxyService.cs" />
     <Compile Include="JCD.cs" />
+    <Compile Include="JCDClasses\Availibility.cs" />
     <Compile Include="JCDClasses\Contrat.cs" />
+    <Compile Include="JCDClasses\Stand.cs" />
     <Compile Include="JCDClasses\Station.cs" />
     <Compile Include="JCDecauxItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

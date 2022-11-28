@@ -13,6 +13,7 @@ namespace Proxy.JCDClasses
         public string name { get; set; }
         public string address { get; set; }
         public Position position { get; set; }
+        public Stand totalStands { get; set; }
     }
 
     public class Position

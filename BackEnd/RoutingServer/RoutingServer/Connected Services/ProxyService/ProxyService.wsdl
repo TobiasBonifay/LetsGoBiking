@@ -4,7 +4,6 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Proxy/ProxyService/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Proxy/ProxyService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Proxy/ProxyService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Proxy" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IProxyService_GetAllContracts_InputMessage">
@@ -13,20 +12,20 @@
   <wsdl:message name="IProxyService_GetAllContracts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllContractsResponse" />
   </wsdl:message>
-  <wsdl:message name="IProxyService_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  <wsdl:message name="IProxyService_GetAllStations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStations" />
   </wsdl:message>
-  <wsdl:message name="IProxyService_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  <wsdl:message name="IProxyService_GetAllStations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllStationsResponse" />
   </wsdl:message>
   <wsdl:portType name="IProxyService">
     <wsdl:operation name="GetAllContracts">
       <wsdl:input wsaw:Action="http://tempuri.org/IProxyService/GetAllContracts" message="tns:IProxyService_GetAllContracts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProxyService/GetAllContractsResponse" message="tns:IProxyService_GetAllContracts_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProxyService/GetDataUsingDataContract" message="tns:IProxyService_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProxyService/GetDataUsingDataContractResponse" message="tns:IProxyService_GetDataUsingDataContract_OutputMessage" />
+    <wsdl:operation name="GetAllStations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProxyService/GetAllStations" message="tns:IProxyService_GetAllStations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProxyService/GetAllStationsResponse" message="tns:IProxyService_GetAllStations_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProxyService" type="tns:IProxyService">
@@ -40,8 +39,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <soap:operation soapAction="http://tempuri.org/IProxyService/GetDataUsingDataContract" style="document" />
+    <wsdl:operation name="GetAllStations">
+      <soap:operation soapAction="http://tempuri.org/IProxyService/GetAllStations" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

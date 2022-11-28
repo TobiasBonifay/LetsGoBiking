@@ -40,5 +40,18 @@ namespace Proxy
             return response.ToString();
         }
 
+        public static async Task<string> GetAllStations()
+        {
+            client = new HttpClient();
+
+            // Récupérer stations
+            string url = "https://api.jcdecaux.com/vls/v3/stations?" + apiKey;
+            HttpResponseMessage response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            return responseBody.Substring(0, 10) ;
+        }
+
     }
 }

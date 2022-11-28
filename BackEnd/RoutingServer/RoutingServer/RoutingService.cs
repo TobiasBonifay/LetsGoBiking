@@ -15,8 +15,7 @@ namespace RoutingServer
 
         public string GetStations()
         {
-            return _proxyClient.GetAllContracts();
-            
+            return _proxyClient.GetAllStations();
         }
 
         public string GetWayInstructions(string fromCoords, string toCoords)

@@ -16,18 +16,9 @@ namespace Proxy
             return JCD.GetContracts();
         }
 
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public string GetAllStations()
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return JCD.GetAllStations().Result;
         }
     }
 }

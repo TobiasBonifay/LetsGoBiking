@@ -29,64 +29,6 @@ namespace RoutingServer.ContractTypes
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/Proxy")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.datacontract.org/2004/07/Proxy", IsNullable=true)]
-    public partial class CompositeType
-    {
-        
-        private bool boolValueField;
-        
-        private bool boolValueFieldSpecified;
-        
-        private string stringValueField;
-        
-        /// <remarks/>
-        public bool BoolValue
-        {
-            get
-            {
-                return this.boolValueField;
-            }
-            set
-            {
-                this.boolValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool BoolValueSpecified
-        {
-            get
-            {
-                return this.boolValueFieldSpecified;
-            }
-            set
-            {
-                this.boolValueFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string StringValue
-        {
-            get
-            {
-                return this.stringValueField;
-            }
-            set
-            {
-                this.stringValueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("MSBuild", "17.4.0+18d5aef85920037c9d6ff49b1215a4daf515197f")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/", IsNullable=false)]
     public partial class GetAllContractsResponse
@@ -116,24 +58,8 @@ namespace RoutingServer.ContractTypes
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/", IsNullable=false)]
-    public partial class GetDataUsingDataContract
+    public partial class GetAllStations
     {
-        
-        private CompositeType compositeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public CompositeType composite
-        {
-            get
-            {
-                return this.compositeField;
-            }
-            set
-            {
-                this.compositeField = value;
-            }
-        }
     }
     
     /// <remarks/>
@@ -143,22 +69,22 @@ namespace RoutingServer.ContractTypes
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/", IsNullable=false)]
-    public partial class GetDataUsingDataContractResponse
+    public partial class GetAllStationsResponse
     {
         
-        private CompositeType getDataUsingDataContractResultField;
+        private string getAllStationsResultField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public CompositeType GetDataUsingDataContractResult
+        public string GetAllStationsResult
         {
             get
             {
-                return this.getDataUsingDataContractResultField;
+                return this.getAllStationsResultField;
             }
             set
             {
-                this.getDataUsingDataContractResultField = value;
+                this.getAllStationsResultField = value;
             }
         }
     }
