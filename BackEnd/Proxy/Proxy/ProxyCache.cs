@@ -23,7 +23,7 @@ namespace Proxy
 
             GenericProxyCache<JCDecauxItem> cache = new GenericProxyCache<JCDecauxItem>();
 
-            string contracts = JCD.GetContracts();
+            string contracts = JCD.GetContractNames();
             foreach (var name in contracts.Split('\n'))
             {
                 cache.Add(new CacheItem(name), new CacheItemPolicy());

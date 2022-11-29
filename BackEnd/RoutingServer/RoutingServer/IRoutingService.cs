@@ -21,6 +21,9 @@ namespace RoutingServer
         [OperationContract]
         string GetGPSCoordsFromAddress(string address);
 
+        [OperationContract]
+        string FindClosestStation();
+
 
     }
 

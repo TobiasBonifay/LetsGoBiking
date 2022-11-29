@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
+using RoutingServer.JCDClasses;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace RoutingServer
 {
@@ -19,6 +21,8 @@ namespace RoutingServer
 
         private string wayInstructionsResponse;
         private GeoCodeResponse gpsPositionFound;
+        private GeoCodeResponse start;
+        private GeoCodeResponse end;
 
         public ORS()
         {
@@ -32,11 +36,28 @@ namespace RoutingServer
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
-            GeoCodeResponse gpsPositions = JsonSerializer.Deserialize<GeoCodeResponse>(responseBody);
-            gpsPositionFound = gpsPositions;
+            gpsPositionFound = JsonSerializer.Deserialize<GeoCodeResponse>(responseBody);
+            if (start == null) this.start = gpsPositionFound;
+            else end = gpsPositionFound;
         }
 
-        public string GetGPSPositionFound()
+        public string GetClosestStation(List<Contract> contracts)
+        {
+            string actualCity = this.start.properties.locality; // test of start position only
+            List<string> citiesToCheck = new List<string>();
+
+            foreach (Contract c in contracts)
+            {
+                citiesToCheck.AddRange( c.cities ) ;
+            }
+
+            if (!citiesToCheck.Contains(actualCity)) return "Trop loin";
+
+            return actualCity;
+            // A finir
+        }
+
+        public string GetGPSPositionFoundCoords()
         {
             if (gpsPositionFound == null) { return "address not found"; }
             return  gpsPositionFound.features[0].geometry.coordinates[0].ToString().Replace(',', '.') + "," + gpsPositionFound.features[0].geometry.coordinates[1].ToString().Replace(',', '.'); // we take the first address found

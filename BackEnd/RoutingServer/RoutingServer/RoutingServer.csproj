@@ -115,11 +115,13 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="IRoutingService.cs" />
+    <Compile Include="JCDClasses\Contract.cs" />
     <Compile Include="ORS.cs" />
     <Compile Include="ORSClasses\Feature.cs" />
     <Compile Include="ORSClasses\GeoCodeFeature.cs" />
     <Compile Include="ORSClasses\GeoCodeGeometry.cs" />
     <Compile Include="ORSClasses\GeoCodeResponse.cs" />
+    <Compile Include="ORSClasses\Properties.cs" />
     <Compile Include="ORSClasses\Property.cs" />
     <Compile Include="ORSClasses\RoadServiceResponse.cs" />
     <Compile Include="ORSClasses\Segment.cs" />

@@ -17,7 +17,7 @@ namespace Proxy
 
         private static List<Contrat> contrats;
 
-        public static async Task InitializeConnexion()
+        public static async Task<string> InitializeConnexion()
         {
             client = new HttpClient();
 
@@ -28,9 +28,11 @@ namespace Proxy
             string responseBody = await response.Content.ReadAsStringAsync();
 
             contrats = JsonSerializer.Deserialize<List<Contrat>>(responseBody);
+
+            return responseBody;
         }
 
-        public static string GetContracts()
+        public static string GetContractNames()
         {
             StringBuilder response = new StringBuilder();
             foreach (Contrat c in contrats)

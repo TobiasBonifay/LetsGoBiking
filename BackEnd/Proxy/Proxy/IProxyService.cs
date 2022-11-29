@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Proxy
 {
@@ -13,7 +14,7 @@ namespace Proxy
     public interface IProxyService
     {
         [OperationContract]
-        string GetAllContracts();
+        Task<string> GetAllContracts();
 
         [OperationContract]
         string GetAllStations();
