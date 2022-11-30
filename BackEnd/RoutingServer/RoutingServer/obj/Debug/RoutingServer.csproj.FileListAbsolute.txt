@@ -52,3 +52,30 @@ C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Va
 C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.CopyComplete
 E:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\XsdGeneratedCode\GeneratedXsdTypes.cs
 C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\XsdGeneratedCode\GeneratedXsdTypes.cs
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\RoutingServer.dll.config
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\RoutingServer.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\RoutingServer.pdb
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Buffers.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Memory.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Text.Json.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.ValueTuple.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Buffers.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Memory.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Text.Json.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\System.ValueTuple.xml
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.AssemblyReference.cache
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.CoreCompileInputs.cache
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\XsdGeneratedCode\GeneratedXsdTypes.cs
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.CopyComplete
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.dll
+C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.pdb

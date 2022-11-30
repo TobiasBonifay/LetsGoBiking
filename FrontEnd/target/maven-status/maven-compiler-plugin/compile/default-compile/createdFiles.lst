@@ -1,0 +1,16 @@
+com\letsgobiking\Main.class
+com\letsgobiking\generated\IRoutingService.class
+com\letsgobiking\soap\SoapImpl.class
+com\letsgobiking\generated\package-info.class
+com\letsgobiking\generated\GetWayInstructions.class
+com\letsgobiking\generated\ObjectFactory.class
+com\letsgobiking\generated\FindClosestStationResponse.class
+com\letsgobiking\generated\RoutingService.class
+com\letsgobiking\Client.class
+com\letsgobiking\generated\GetWayInstructionsResponse.class
+com\letsgobiking\generated\GetStations.class
+com\letsgobiking\soap\ISoap.class
+com\letsgobiking\generated\GetGPSCoordsFromAddressResponse.class
+com\letsgobiking\generated\GetStationsResponse.class
+com\letsgobiking\generated\FindClosestStation.class
+com\letsgobiking\generated\GetGPSCoordsFromAddress.class
