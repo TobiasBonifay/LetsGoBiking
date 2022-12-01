@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Runtime.Serialization.Formatters;
+using System.Text.Json;
 
 
 namespace Proxy
@@ -24,22 +25,29 @@ namespace Proxy
         }
 
 
-        public T Get(string cacheItemName)
+        public T Get<T>(string cacheItemName)
         {
-            return _cache.ContainsKey(cacheItemName) ? Get(cacheItemName, _dtDefault) : default(T);
+            return Get<T>(cacheItemName, _dtDefault);
         }
 
-
-        public T Get(string cacheItemName, DateTimeOffset dt)
+        public T Get<T>(string cacheItemName, double dt_seconds)
         {
-            if (_cache.ContainsKey(cacheItemName))
-            {
-                return _cache[cacheItemName];
-            }
+            return Get<T>(cacheItemName, DateTimeOffset.Now.AddSeconds(dt_seconds));
+        }
 
-            var item = default(T);
-            _cache.Add(cacheItemName, item);
-            return item;
+        public T Get<T>(string cacheItemName, DateTimeOffset dt)
+        {
+            ObjectCache cache = MemoryCache.Default;
+            T response = (T)cache[cacheItemName];
+            if (response != null) return response;
+
+            var policy = new CacheItemPolicy();
+            policy.AbsoluteExpiration = dt;
+
+            // IGOR: we need to call API here
+            // response = JsonSerializer.Deserialize<T>(JCDecauxAPIGetCall(cacheItemName).Result);
+            cache.Set(cacheItemName, response, policy);
+            return response;
         }
 
         public override CacheEntryChangeMonitor CreateCacheEntryChangeMonitor(IEnumerable<string> keys,
