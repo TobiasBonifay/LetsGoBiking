@@ -10,6 +10,6 @@ namespace RoutingServer.ORSClasses
     public class GeoCodeResponse
     {
         public List<GeoCodeFeature> features { get; set; }
-        public Properties properties { get; set; }
+        
     }
 }

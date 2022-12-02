@@ -21,8 +21,6 @@ namespace RoutingServer
 
         private string wayInstructionsResponse;
         private GeoCodeResponse gpsPositionFound;
-        private GeoCodeResponse start;
-        private GeoCodeResponse end;
 
         public ORS()
         {
@@ -37,21 +35,31 @@ namespace RoutingServer
             string responseBody = await response.Content.ReadAsStringAsync();
 
             gpsPositionFound = JsonSerializer.Deserialize<GeoCodeResponse>(responseBody);
-            if (start == null) this.start = gpsPositionFound;
-            else end = gpsPositionFound;
+            
         }
 
-        public string GetClosestStation(List<Contract> contracts)
+        public string GetClosestStation(List<Contract> contracts, string address)
         {
-            string actualCity = this.start.properties.locality; // test of start position only
+            FindGPSCoords(address).Wait();
+            string actualCity = gpsPositionFound.features[0].properties.locality; // test of start position only
             List<string> citiesToCheck = new List<string>();
+            Contract closestContract = null;
 
             foreach (Contract c in contracts)
             {
-                citiesToCheck.AddRange( c.cities ) ;
+                citiesToCheck.Clear();
+                if (c.cities != null)
+                    citiesToCheck.AddRange(c.cities);
+                if (citiesToCheck.Contains(actualCity))
+                {
+                    closestContract = c;
+                    break;
+                }
             }
 
-            if (!citiesToCheck.Contains(actualCity)) return "Trop loin";
+            if (closestContract == null) { return "Service pas disponible dans votre ville"; }
+
+
 
             return actualCity;
             // A finir

@@ -22,7 +22,7 @@ namespace RoutingServer
         string GetGPSCoordsFromAddress(string address);
 
         [OperationContract]
-        string FindClosestStation();
+        string FindClosestStation(string address);
 
 
     }

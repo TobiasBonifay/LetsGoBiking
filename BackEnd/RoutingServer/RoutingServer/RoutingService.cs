@@ -26,11 +26,11 @@ namespace RoutingServer
             return _proxyClient.GetAllStations();
         }
 
-        public string FindClosestStation()
+        public string FindClosestStation(string address)
         {
             List<Contract> contrats = JsonSerializer.Deserialize<List<Contract>>(proxyContratResp);
             
-            return _ors.GetClosestStation(contrats);
+            return _ors.GetClosestStation(contrats, address);
         }
 
         public string GetWayInstructions(string fromCoords, string toCoords)
