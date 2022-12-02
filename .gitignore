@@ -1,5 +1,6 @@
 .vs/*
 /RoutingServer/.vs/*
+BackEnd/RoutingServer/.vs/*
 /RoutingServer/bin/Debug/
 /BackEnd/.vs/*
 BackEnd/RoutingServer/.vs/*
@@ -9,6 +10,7 @@ Proxy/RoutingServer/.vs/*
 /Proxy/.vs/*
 /Proxy/bin/Debug/
 BackEnd/RoutingServer/RoutingServer/obj/Debug/*
+BackEnd/Proxy/.vs/*
 
 /FrontEnd/.idea/
 /FrontEnd/shelf/
