@@ -5,6 +5,8 @@ using System.Text.Json;
 using RoutingServer.JCDClasses;
 using System.Threading.Tasks;
 using System.Linq;
+using RoutingServer.ProxyService;
+using static System.Net.WebRequestMethods;
 
 namespace RoutingServer
 {
@@ -30,7 +32,7 @@ namespace RoutingServer
         public async Task FindGPSCoords(string address)
         {
             httpClient.DefaultRequestHeaders.Clear();
-            HttpResponseMessage response = await httpClient.GetAsync(baseGPSAddress + address);
+            HttpResponseMessage response = await httpClient.GetAsync(baseGPSAddress + address );
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
@@ -38,7 +40,7 @@ namespace RoutingServer
             
         }
 
-        public string GetClosestStation(List<Contract> contracts, string address)
+        public string GetClosestStationAsync(List<Contract> contracts, string address)
         {
             FindGPSCoords(address).Wait();
             string actualCity = gpsPositionFound.features[0].properties.locality; // test of start position only
@@ -57,11 +59,14 @@ namespace RoutingServer
                 }
             }
 
-            if (closestContract == null) { return "Service pas disponible dans votre ville"; }
+            if (closestContract == null) { return "Service pas disponible dans votre ville, ville de " + actualCity ; }
+
+            ProxyServiceClient proxy = new ProxyServiceClient();
+            string stationsJson = proxy.GetStationByContract(closestContract.name);
+            List<Station> stations = JsonSerializer.Deserialize<List<Station>>(stationsJson);
 
 
-
-            return actualCity;
+            return stations[0].name;
             // A finir
         }
 

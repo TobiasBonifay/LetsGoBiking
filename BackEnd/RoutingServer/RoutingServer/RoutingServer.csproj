@@ -115,6 +115,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="IRoutingService.cs" />
+    <Compile Include="JCDClasses\Station.cs" />
     <Compile Include="JCDClasses\Contract.cs" />
     <Compile Include="ORS.cs" />
     <Compile Include="ORSClasses\Feature.cs" />

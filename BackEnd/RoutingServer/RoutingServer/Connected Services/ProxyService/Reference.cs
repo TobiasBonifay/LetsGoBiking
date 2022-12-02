@@ -26,6 +26,18 @@ namespace RoutingServer.ProxyService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProxyService/GetAllStations", ReplyAction="http://tempuri.org/IProxyService/GetAllStationsResponse")]
         System.Threading.Tasks.Task<string> GetAllStationsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProxyService/GetStation", ReplyAction="http://tempuri.org/IProxyService/GetStationResponse")]
+        string GetStation(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProxyService/GetStation", ReplyAction="http://tempuri.org/IProxyService/GetStationResponse")]
+        System.Threading.Tasks.Task<string> GetStationAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProxyService/GetStationByContract", ReplyAction="http://tempuri.org/IProxyService/GetStationByContractResponse")]
+        string GetStationByContract(string contract);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProxyService/GetStationByContract", ReplyAction="http://tempuri.org/IProxyService/GetStationByContractResponse")]
+        System.Threading.Tasks.Task<string> GetStationByContractAsync(string contract);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +81,22 @@ namespace RoutingServer.ProxyService {
         
         public System.Threading.Tasks.Task<string> GetAllStationsAsync() {
             return base.Channel.GetAllStationsAsync();
+        }
+        
+        public string GetStation(string name) {
+            return base.Channel.GetStation(name);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStationAsync(string name) {
+            return base.Channel.GetStationAsync(name);
+        }
+        
+        public string GetStationByContract(string contract) {
+            return base.Channel.GetStationByContract(contract);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStationByContractAsync(string contract) {
+            return base.Channel.GetStationByContractAsync(contract);
         }
     }
 }

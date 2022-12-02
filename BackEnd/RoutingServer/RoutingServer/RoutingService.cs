@@ -26,19 +26,22 @@ namespace RoutingServer
             return _proxyClient.GetAllStations();
         }
 
+        // Returns GPS Coords of the closest station to given address
         public string FindClosestStation(string address)
         {
             List<Contract> contrats = JsonSerializer.Deserialize<List<Contract>>(proxyContratResp);
             
-            return _ors.GetClosestStation(contrats, address);
+            return _ors.GetClosestStationAsync(contrats, address);
         }
 
+        // Returns foot-walking instructions 
         public string GetWayInstructions(string fromCoords, string toCoords)
         {
             _ors.GetWayInstructions(fromCoords, toCoords).Wait();
             return _ors.GetWayInstrictionsResponse();
         }
 
+        // Returns GPS Coords of given address 
         public string GetGPSCoordsFromAddress(string address)
         {
             _ors.FindGPSCoords(address).Wait();

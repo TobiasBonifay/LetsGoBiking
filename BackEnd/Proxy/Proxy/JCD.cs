@@ -12,7 +12,7 @@ namespace Proxy
     public static class JCD
     {
         private static HttpClient client;
-        private static string apiKey = "?apiKey=1de1c64691bd95053065293721d5b0cfd3e5c226";
+        private static string apiKey = "apiKey=1de1c64691bd95053065293721d5b0cfd3e5c226";
 
         private static List<Contrat> contrats;
         private static string baseUrlApi = "https://api.jcdecaux.com/vls/v3/";
@@ -22,7 +22,7 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer contrats
-            string url = baseUrlApi + "contracts" + apiKey;
+            string url = baseUrlApi + "contracts" + "?" + apiKey;
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
@@ -61,7 +61,7 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer les infos d'une station donnée
-            string url = baseUrlApi + "stations/" + name + "?" + apiKey;
+            string url = baseUrlApi + "stations/" + name + apiKey;
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
@@ -74,12 +74,12 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer stations
-            string url = baseUrlApi + "stations?contract=" + contract + "?" + apiKey;
+            string url = baseUrlApi + "stations/?contract=" + contract + "&" + apiKey;
             HttpResponseMessage response = client.GetAsync(url).Result;
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
-            return responseBody.Substring(0, 10);
+            return responseBody;
         }
 
         public static async Task<string> GetCall(string cacheItemName)

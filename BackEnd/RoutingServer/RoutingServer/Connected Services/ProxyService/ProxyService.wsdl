@@ -18,6 +18,18 @@
   <wsdl:message name="IProxyService_GetAllStations_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllStationsResponse" />
   </wsdl:message>
+  <wsdl:message name="IProxyService_GetStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStation" />
+  </wsdl:message>
+  <wsdl:message name="IProxyService_GetStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProxyService_GetStationByContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationByContract" />
+  </wsdl:message>
+  <wsdl:message name="IProxyService_GetStationByContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationByContractResponse" />
+  </wsdl:message>
   <wsdl:portType name="IProxyService">
     <wsdl:operation name="GetAllContracts">
       <wsdl:input wsaw:Action="http://tempuri.org/IProxyService/GetAllContracts" message="tns:IProxyService_GetAllContracts_InputMessage" />
@@ -26,6 +38,14 @@
     <wsdl:operation name="GetAllStations">
       <wsdl:input wsaw:Action="http://tempuri.org/IProxyService/GetAllStations" message="tns:IProxyService_GetAllStations_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProxyService/GetAllStationsResponse" message="tns:IProxyService_GetAllStations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProxyService/GetStation" message="tns:IProxyService_GetStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProxyService/GetStationResponse" message="tns:IProxyService_GetStation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStationByContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProxyService/GetStationByContract" message="tns:IProxyService_GetStationByContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProxyService/GetStationByContractResponse" message="tns:IProxyService_GetStationByContract_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProxyService" type="tns:IProxyService">
@@ -41,6 +61,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllStations">
       <soap:operation soapAction="http://tempuri.org/IProxyService/GetAllStations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStation">
+      <soap:operation soapAction="http://tempuri.org/IProxyService/GetStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationByContract">
+      <soap:operation soapAction="http://tempuri.org/IProxyService/GetStationByContract" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
