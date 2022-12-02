@@ -60,7 +60,7 @@ namespace Proxy
         {
             client = new HttpClient();
 
-            // Récupérer stations
+            // Récupérer les infos d'une station donnée
             string url = baseUrlApi + "stations/" + name + "?" + apiKey;
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -74,7 +74,7 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer stations
-            string url = baseUrlApi + "stations/" + contract + "?" + apiKey;
+            string url = baseUrlApi + "stations?contract=" + contract + "?" + apiKey;
             HttpResponseMessage response = client.GetAsync(url).Result;
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
