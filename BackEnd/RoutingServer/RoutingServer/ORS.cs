@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using RoutingServer.ProxyService;
 using static System.Net.WebRequestMethods;
+using System.Device.Location;
 
 namespace RoutingServer
 {
@@ -65,8 +66,22 @@ namespace RoutingServer
             string stationsJson = proxy.GetStationByContract(closestContract.name);
             List<Station> stations = JsonSerializer.Deserialize<List<Station>>(stationsJson);
 
+            Station closestStation = stations[0];
+            GeoCoordinate s1 = new GeoCoordinate(closestStation.position.latitude, closestStation.position.longitude);
+            double distMin = s1.GetDistanceTo(new GeoCoordinate(gpsPositionFound.features[0].geometry.coordinates[1], gpsPositionFound.features[0].geometry.coordinates[0]));
+            
+            foreach (Station s in stations)
+            {
+                GeoCoordinate s2 = new GeoCoordinate(s.position.latitude, s.position.longitude);
+                if (s1.GetDistanceTo(s2) < distMin) 
+                {
+                    closestStation = s;
+                    s1.Latitude = s2.Latitude;
+                    s1.Longitude = s2.Longitude;
+                }
+            }
 
-            return stations[0].name;
+            return closestStation.name + " " + closestStation.position.longitude + "," + closestStation.position.latitude;
             // A finir
         }
 
