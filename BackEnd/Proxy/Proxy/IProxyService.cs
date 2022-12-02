@@ -19,9 +19,12 @@ namespace Proxy
         [OperationContract]
         string GetAllStations();
 
+        [OperationContract]
+        string GetStation(string name);
 
+        [OperationContract]
+        string GetStationByContract(string contract);
 
-        // TODO: ajoutez vos opérations de service ici
     }
 
     // Utilisez un contrat de données comme indiqué dans l'exemple ci-après pour ajouter les types composites aux opérations de service.
