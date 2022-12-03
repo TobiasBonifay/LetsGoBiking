@@ -17,7 +17,7 @@ namespace RoutingServer
 
         // Foot walking way
         string baseFootWalkingAddress = "https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
-
+        string baseByBikeAddress = "https://api.openrouteservice.org/v2/directions/cycling-regular?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
         // GPS Position
         private string baseGPSAddress = "https://api.openrouteservice.org/geocode/autocomplete?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
         
@@ -91,14 +91,17 @@ namespace RoutingServer
         }
 
         /*
-         * Takes coords on entry
+         * Takes coords on entry and boolean to differentiate foot walking instructions from by bike instrictions
          */
-        public async Task<Segment> GetWayInstructions(string from, string to)
+        public async Task<Segment> GetWayInstructions(string from, string to, bool usingBike)
         {
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
 
-            HttpResponseMessage response = await httpClient.GetAsync(baseFootWalkingAddress + "&start=" + from + "&end=" + to);
+            string httpAddress = baseFootWalkingAddress;
+            if (usingBike) httpAddress = baseByBikeAddress;
+
+            HttpResponseMessage response = await httpClient.GetAsync(httpAddress + "&start=" + from + "&end=" + to);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 

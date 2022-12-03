@@ -35,18 +35,18 @@ namespace RoutingServer
         }
 
         // Returns foot-walking instructions 
-        public string GetWayInstructions(string fromCoords, string startClosesetStztion, string toCoords, string endClosestStation)
+        public string GetWayInstructions(string fromCoords, string startClosesetStation, string toCoords, string endClosestStation)
         {
-            Segment startToStation = _ors.GetWayInstructions(fromCoords, startClosesetStztion).Result;
-            Segment endClosestStationToEnd = _ors.GetWayInstructions(endClosestStation, toCoords).Result;
-            Segment fromTo = _ors.GetWayInstructions(fromCoords, toCoords).Result;
+            Segment startToStation = _ors.GetWayInstructions(fromCoords, startClosesetStation, false).Result;
+            Segment endClosestStationToEnd = _ors.GetWayInstructions(endClosestStation, toCoords, false).Result;
+            Segment fromTo = _ors.GetWayInstructions(fromCoords, toCoords, false).Result;
 
             if ( (startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration) 
             {
                 return _ors.GetWayInstrictionsResponse(fromTo);
             }
-
-            return _ors.GetWayInstrictionsResponse(startToStation) + _ors.GetWayInstrictionsResponse(endClosestStationToEnd);
+            Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
+            return _ors.GetWayInstrictionsResponse(startToStation) + _ors.GetWayInstrictionsResponse(bikeSegment) + _ors.GetWayInstrictionsResponse(endClosestStationToEnd);
         }
 
         // Returns GPS Coords of given address 
