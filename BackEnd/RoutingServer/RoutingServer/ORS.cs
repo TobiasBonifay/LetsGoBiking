@@ -22,7 +22,6 @@ namespace RoutingServer
         private string baseGPSAddress = "https://api.openrouteservice.org/geocode/autocomplete?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
         
 
-        private string wayInstructionsResponse;
         private GeoCodeResponse gpsPositionFound;
 
         public ORS()
@@ -73,7 +72,7 @@ namespace RoutingServer
             foreach (Station s in stations)
             {
                 GeoCoordinate s2 = new GeoCoordinate(s.position.latitude, s.position.longitude);
-                if (s1.GetDistanceTo(s2) < distMin) 
+                if ( (s1.GetDistanceTo(s2) < distMin) && s.totalStands.availabilities.bikes > 0) 
                 {
                     closestStation = s;
                     s1.Latitude = s2.Latitude;
@@ -81,7 +80,7 @@ namespace RoutingServer
                 }
             }
 
-            return closestStation.name + " " + closestStation.position.longitude + "," + closestStation.position.latitude;
+            return closestStation.position.longitude.ToString().Replace(',', '.') + "," + closestStation.position.latitude.ToString().Replace(',', '.');
             // A finir
         }
 
@@ -94,7 +93,7 @@ namespace RoutingServer
         /*
          * Takes coords on entry
          */
-        public async Task GetWayInstructions(string from, string to)
+        public async Task<Segment> GetWayInstructions(string from, string to)
         {
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
@@ -105,19 +104,20 @@ namespace RoutingServer
 
             RoadServiceResponse roadServiceResponse = JsonSerializer.Deserialize<RoadServiceResponse>(responseBody);
             Segment segment = roadServiceResponse.features[0].properties.segments[0];
-            List<Step> steps = segment.steps;
 
+            return segment;
+        }
+
+        public string GetWayInstrictionsResponse(Segment segment)
+        {
+            string wayInstructionsResponse = null;
+            List<Step> steps = segment.steps;
             wayInstructionsResponse += "Distance: " + segment.distance + "m \n";
             wayInstructionsResponse += "Duration: " + segment.duration + "sec \n";
             foreach (Step s in steps)
             {
                 wayInstructionsResponse += s.instruction + "\n";
             }
-
-        }
-
-        public string GetWayInstrictionsResponse()
-        {
             return wayInstructionsResponse;
         }
 

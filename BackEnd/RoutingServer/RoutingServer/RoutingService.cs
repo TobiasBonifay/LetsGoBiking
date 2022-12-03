@@ -35,10 +35,18 @@ namespace RoutingServer
         }
 
         // Returns foot-walking instructions 
-        public string GetWayInstructions(string fromCoords, string toCoords)
+        public string GetWayInstructions(string fromCoords, string startClosesetStztion, string toCoords, string endClosestStation)
         {
-            _ors.GetWayInstructions(fromCoords, toCoords).Wait();
-            return _ors.GetWayInstrictionsResponse();
+            Segment startToStation = _ors.GetWayInstructions(fromCoords, startClosesetStztion).Result;
+            Segment endClosestStationToEnd = _ors.GetWayInstructions(endClosestStation, toCoords).Result;
+            Segment fromTo = _ors.GetWayInstructions(fromCoords, toCoords).Result;
+
+            if ( (startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration) 
+            {
+                return _ors.GetWayInstrictionsResponse(fromTo);
+            }
+
+            return _ors.GetWayInstrictionsResponse(startToStation) + _ors.GetWayInstrictionsResponse(endClosestStationToEnd);
         }
 
         // Returns GPS Coords of given address 

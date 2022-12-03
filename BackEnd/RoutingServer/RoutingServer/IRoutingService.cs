@@ -16,7 +16,7 @@ namespace RoutingServer
         string GetStations();
 
         [OperationContract]
-        string GetWayInstructions(string fromCoords, string toCoords);
+        string GetWayInstructions(string fromCoords, string startClosesetStztion, string toCoords, string endClosestStation);
 
         [OperationContract]
         string GetGPSCoordsFromAddress(string address);
