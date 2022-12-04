@@ -135,17 +135,27 @@ namespace RoutingServer
             if (distance > 1000)
                 wayInstructionsResponse.Append((distance / 1000).ToString("0.00")).Append(" km\n");
             else
-                wayInstructionsResponse.Append(distance.ToString("0.00")).Append(" m\n");
+                wayInstructionsResponse.Append(distance.ToString("0.0")).Append(" m\n");
 
             wayInstructionsResponse.Append("\n").Append("Segment duration : ");
 
             if (duration > 3600)
-                wayInstructionsResponse.Append((duration / 3600).ToString("0.00")).Append(" h\n");
-            else if (duration > 60)
-                wayInstructionsResponse.Append((duration / 60).ToString("0.00")).Append(" m\n");
-            else
-                wayInstructionsResponse.Append(duration.ToString("0.00")).Append(" s\n");
+            {
+                wayInstructionsResponse.Append((duration / 3600).ToString("0")).Append(" h");
+                duration %= 3600;
+            }
 
+            if (duration > 60)
+            {
+                wayInstructionsResponse.Append((duration / 60).ToString("0")).Append(" min");
+                duration %= 60;
+            }
+            
+            if (duration > 0)
+                wayInstructionsResponse.Append(duration.ToString("0")).Append(" s");
+
+            wayInstructionsResponse.Append("\n").Append("Instructions : \n");
+            
             var steps = segment.steps;
             var i = 0;
             foreach (var s in steps)
