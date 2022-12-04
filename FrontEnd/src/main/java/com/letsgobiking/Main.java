@@ -3,7 +3,6 @@ package com.letsgobiking;
 import com.letsgobiking.generated.IRoutingService;
 import com.letsgobiking.generated.RoutingService;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -16,18 +15,53 @@ public class Main {
         IRoutingService iRoutingService = routingService.getBasicHttpBindingIRoutingService();
 
         System.out.println("Hello !");
+        while (true) {
+            showHelp();
+            System.out.println("Enter a command: ");
 
-        System.out.println("Stations available:");
-        System.out.println(iRoutingService.getStations());
+            switch (sc.nextLine().trim().substring(0, 1).toLowerCase()) {
+                case "p", "q", "quit" -> {
+                    return;
+                }
+                case "h" -> showHelp();
+                case "0" -> {
+                    System.out.println("Get best itinerary instructions");
+                    System.out.println("Enter a departure address: ");
+                    String fromCoords = sc.nextLine();
+                    System.out.println("Enter a destination address: ");
+                    String toCoords = sc.nextLine();
+                    System.out.println(iRoutingService.getWayInstructions(fromCoords, toCoords));
+                }
+                case "1" -> {
+                    System.out.println("Find the closest station");
+                    System.out.println(iRoutingService.findClosestStation());
+                }
+                case "2" -> {
+                    System.out.println("Get GPS coordinates from address");
+                    System.out.println("Enter an address: ");
+                    String address = sc.nextLine();
+                    System.out.println(iRoutingService.getGPSCoordsFromAddress(address));
+                }
+                case "3" -> {
+                    System.out.println("Get available stations");
+                    System.out.println(iRoutingService.getStations());
+                }
+                default -> {
+                    System.out.println("Unknown command");
+                    showHelp();
+                }
+            }
+        }
+    }
 
-        System.out.println("Closest station:");
-        System.out.println(iRoutingService.findClosestStation());
-
-        System.out.println("Please enter the starting point of your trip :");
-        String adr1 = iRoutingService.getGPSCoordsFromAddress(sc.nextLine());
-        System.out.println("Please enter the destination of your trip :");
-        String adr2 = iRoutingService.getGPSCoordsFromAddress(sc.nextLine());
-
-        System.out.println(iRoutingService.getWayInstructions(adr1, adr2));
+    private static void showHelp() {
+        System.out.println("------------------------");
+        System.out.println("0: Get best itinerary instructions");
+        System.out.println("1: Find the closest station");
+        System.out.println("2: Get GPS coordinates from address");
+        System.out.println("3: Get available stations");
+        System.out.println("h: Show help");
+        System.out.println("q: Quit");
+        System.out.println("------------------------");
     }
 }
