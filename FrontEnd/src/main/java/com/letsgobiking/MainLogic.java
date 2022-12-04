@@ -23,6 +23,7 @@ public class MainLogic {
         System.out.println("Enter a destination address: ");
         String toCoords = sc.nextLine();
         String endClosestStation = iRoutingService.findClosestStation(toCoords);
+        System.out.println("The nearest station is " + endClosestStation);
         System.out.println(iRoutingService.getWayInstructions(fromCoords, startClosestStation, toCoords, endClosestStation));
     }
 
