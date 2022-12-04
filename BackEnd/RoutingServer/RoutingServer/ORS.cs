@@ -82,8 +82,7 @@ namespace RoutingServer
                 }
             }
 
-            return closestStation.position.longitude.ToString().Replace(',', '.') + "," + closestStation.position.latitude.ToString().Replace(',', '.');
-            // A finir
+            return closestStation.position.longitude.ToString().Replace(',', '.').Substring(0, 9) + "," + closestStation.position.latitude.ToString().Replace(',', '.').Substring(0, 9);
         }
 
         /**
