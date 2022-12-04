@@ -7,7 +7,6 @@ using RoutingServer.JCDClasses;
 using System.Threading.Tasks;
 using System.Linq;
 using RoutingServer.ProxyService;
-using static System.Net.WebRequestMethods;
 using System.Device.Location;
 using System.Text;
 
@@ -45,7 +44,7 @@ namespace RoutingServer
         public string GetClosestStationAsync(List<Contract> contracts, string address)
         {
             FindGPSCoords(address).Wait();
-            var actualCity = gpsPositionFound.features[0].properties.locality; // test of start position only
+            var actualCity = gpsPositionFound.features[0].properties.locality;
             var citiesToCheck = new List<string>();
             Contract closestContract = null;
 
@@ -90,7 +89,8 @@ namespace RoutingServer
          */
         public string GetGPSPositionFoundCoords()
         {
-            if (gpsPositionFound == null) { return "address not found"; }
+            if (gpsPositionFound == null) { return "Error : Address not found"; }
+            if (gpsPositionFound.features.Count == 0) { return "Error : Unknown Address "; }
             return  gpsPositionFound.features[0].geometry.coordinates[0].ToString().Replace(',', '.') + "," + gpsPositionFound.features[0].geometry.coordinates[1].ToString().Replace(',', '.'); // we take the first address found
         }
 
