@@ -21,7 +21,7 @@ namespace RoutingServer
         string baseFootWalkingAddress = "https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
         string baseByBikeAddress = "https://api.openrouteservice.org/v2/directions/cycling-regular?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
         // GPS Position
-        private string baseGPSAddress = "https://api.openrouteservice.org/geocode/autocomplete?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
+        private string baseGPSAddress = "https://api.openrouteservice.org/geocode/search?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
         
 
         private GeoCodeResponse gpsPositionFound;
