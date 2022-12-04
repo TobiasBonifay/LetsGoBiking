@@ -12,6 +12,10 @@ namespace RoutingServer
         private readonly ProxyServiceClient _proxyClient; // allows to communicate with JCDecaux
         private readonly ORS _ors;
 
+        private string WALKHAEDER = "\n-------WALK-------\n";
+        private string BIKEHAEDER = "\n-------BIKE-------\n";
+        private string SEPARATION = "\n------------------\n";
+
         private string proxyContratResp;
 
         public RoutingService()
@@ -34,7 +38,7 @@ namespace RoutingServer
             return _ors.GetClosestStationAsync(contrats, address);
         }
 
-        // Returns foot-walking instructions 
+        // Returns foot-walking / by bike instructions 
         public string GetWayInstructions(string fromCoords, string startClosesetStation, string toCoords, string endClosestStation)
         {
             Segment startToStation = _ors.GetWayInstructions(fromCoords, startClosesetStation, false).Result;
@@ -43,10 +47,13 @@ namespace RoutingServer
 
             if ( (startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration) 
             {
-                return _ors.GetWayInstrictionsResponse(fromTo);
+                return WALKHAEDER + _ors.GetWayInstrictionsResponse(fromTo);
             }
             Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
-            return _ors.GetWayInstrictionsResponse(startToStation) + _ors.GetWayInstrictionsResponse(bikeSegment) + _ors.GetWayInstrictionsResponse(endClosestStationToEnd);
+            string response = WALKHAEDER + _ors.GetWayInstrictionsResponse(startToStation);
+            response += BIKEHAEDER + _ors.GetWayInstrictionsResponse(bikeSegment);
+            response += WALKHAEDER + _ors.GetWayInstrictionsResponse(endClosestStationToEnd);
+            return response;
         }
 
         // Returns GPS Coords of given address 

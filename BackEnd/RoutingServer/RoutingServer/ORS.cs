@@ -115,11 +115,14 @@ namespace RoutingServer
         {
             string wayInstructionsResponse = null;
             List<Step> steps = segment.steps;
-            wayInstructionsResponse += "Distance: " + segment.distance + "m \n";
-            wayInstructionsResponse += "Duration: " + segment.duration + "sec \n";
+            wayInstructionsResponse += "Segment distance: " + segment.distance + "m \n";
+            wayInstructionsResponse += "Segment duration: " + segment.duration + "sec \n";
+
+            int i = 0;
             foreach (Step s in steps)
             {
-                wayInstructionsResponse += s.instruction + "\n";
+                wayInstructionsResponse += "Step " + i + " -> " + s.instruction + "\n";
+                i++;
             }
             return wayInstructionsResponse;
         }
