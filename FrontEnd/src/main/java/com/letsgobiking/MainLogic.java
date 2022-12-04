@@ -19,7 +19,7 @@ public class MainLogic {
         System.out.println("Enter a departure address: ");
         String fromCoords = sc.nextLine();
         String startClosestStation = iRoutingService.findClosestStation(fromCoords);
-        System.out.println("La station la plus proche est : " + startClosestStation);
+        System.out.println("The nearest station is " + startClosestStation);
         System.out.println("Enter a destination address: ");
         String toCoords = sc.nextLine();
         String endClosestStation = iRoutingService.findClosestStation(toCoords);
