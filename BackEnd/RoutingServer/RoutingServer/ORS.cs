@@ -1,4 +1,5 @@
-﻿using RoutingServer.ORSClasses;
+﻿using System;
+using RoutingServer.ORSClasses;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
@@ -8,6 +9,7 @@ using System.Linq;
 using RoutingServer.ProxyService;
 using static System.Net.WebRequestMethods;
 using System.Device.Location;
+using System.Text;
 
 namespace RoutingServer
 {
@@ -32,9 +34,9 @@ namespace RoutingServer
         public async Task FindGPSCoords(string address)
         {
             httpClient.DefaultRequestHeaders.Clear();
-            HttpResponseMessage response = await httpClient.GetAsync(baseGPSAddress + address );
+            var response = await httpClient.GetAsync(baseGPSAddress + address );
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            var responseBody = await response.Content.ReadAsStringAsync();
 
             gpsPositionFound = JsonSerializer.Deserialize<GeoCodeResponse>(responseBody);
             
@@ -43,11 +45,11 @@ namespace RoutingServer
         public string GetClosestStationAsync(List<Contract> contracts, string address)
         {
             FindGPSCoords(address).Wait();
-            string actualCity = gpsPositionFound.features[0].properties.locality; // test of start position only
-            List<string> citiesToCheck = new List<string>();
+            var actualCity = gpsPositionFound.features[0].properties.locality; // test of start position only
+            var citiesToCheck = new List<string>();
             Contract closestContract = null;
 
-            foreach (Contract c in contracts)
+            foreach (var c in contracts)
             {
                 citiesToCheck.Clear();
                 if (c.cities != null)
@@ -61,17 +63,17 @@ namespace RoutingServer
 
             if (closestContract == null) { return "Service pas disponible dans votre ville, ville de " + actualCity ; }
 
-            ProxyServiceClient proxy = new ProxyServiceClient();
-            string stationsJson = proxy.GetStationByContract(closestContract.name);
-            List<Station> stations = JsonSerializer.Deserialize<List<Station>>(stationsJson);
+            var proxy = new ProxyServiceClient();
+            var stationsJson = proxy.GetStationByContract(closestContract.name);
+            var stations = JsonSerializer.Deserialize<List<Station>>(stationsJson);
 
-            Station closestStation = stations[0];
-            GeoCoordinate s1 = new GeoCoordinate(closestStation.position.latitude, closestStation.position.longitude);
-            double distMin = s1.GetDistanceTo(new GeoCoordinate(gpsPositionFound.features[0].geometry.coordinates[1], gpsPositionFound.features[0].geometry.coordinates[0]));
+            var closestStation = stations[0];
+            var s1 = new GeoCoordinate(closestStation.position.latitude, closestStation.position.longitude);
+            var distMin = s1.GetDistanceTo(new GeoCoordinate(gpsPositionFound.features[0].geometry.coordinates[1], gpsPositionFound.features[0].geometry.coordinates[0]));
             
-            foreach (Station s in stations)
+            foreach (var s in stations)
             {
-                GeoCoordinate s2 = new GeoCoordinate(s.position.latitude, s.position.longitude);
+                var s2 = new GeoCoordinate(s.position.latitude, s.position.longitude);
                 if ( (s1.GetDistanceTo(s2) < distMin) && s.totalStands.availabilities.bikes > 0) 
                 {
                     closestStation = s;
@@ -84,6 +86,9 @@ namespace RoutingServer
             // A finir
         }
 
+        /**
+         * @return the first match
+         */
         public string GetGPSPositionFoundCoords()
         {
             if (gpsPositionFound == null) { return "address not found"; }
@@ -91,40 +96,62 @@ namespace RoutingServer
         }
 
         /*
-         * Takes coords on entry and boolean to differentiate foot walking instructions from by bike instrictions
+         * Get the route between two points
+         * @param from, to : string of coordinates
+         * @param byBike : boolean to differentiate foot walking instructions from by bike instructions
+         * @return : Task<Segment> containing instructions with distance and duration
          */
         public async Task<Segment> GetWayInstructions(string from, string to, bool usingBike)
         {
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
 
-            string httpAddress = baseFootWalkingAddress;
+            var httpAddress = baseFootWalkingAddress;
             if (usingBike) httpAddress = baseByBikeAddress;
 
-            HttpResponseMessage response = await httpClient.GetAsync(httpAddress + "&start=" + from + "&end=" + to);
+            var response = await httpClient.GetAsync(httpAddress + "&start=" + from + "&end=" + to);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-
+            
+            var responseBody = await response.Content.ReadAsStringAsync();
             RoadServiceResponse roadServiceResponse = JsonSerializer.Deserialize<RoadServiceResponse>(responseBody);
-            Segment segment = roadServiceResponse.features[0].properties.segments[0];
-
-            return segment;
+            if (roadServiceResponse != null) return roadServiceResponse.features[0].properties.segments[0];
+            
+            Console.Write("[Serializer]Error in road service response");
+            return null;
         }
 
-        public string GetWayInstrictionsResponse(Segment segment)
+        /**
+         * Get steps of the way
+         * @param segment Segment Object (double distance, double duration, List<Step> steps)
+         * @return string with the instructions, distance and duration
+         */
+        public string GetWayInstructionsResponse(Segment segment)
         {
-            string wayInstructionsResponse = null;
-            List<Step> steps = segment.steps;
-            wayInstructionsResponse += "Segment distance: " + segment.distance + "m \n";
-            wayInstructionsResponse += "Segment duration: " + segment.duration + "sec \n";
+            var wayInstructionsResponse = new StringBuilder();
+            var distance = segment.distance;
+            var duration = segment.duration;
 
-            int i = 0;
-            foreach (Step s in steps)
-            {
-                wayInstructionsResponse += "Step " + i + " -> " + s.instruction + "\n";
-                i++;
-            }
-            return wayInstructionsResponse;
+            wayInstructionsResponse.Append("Segment distance : ");
+            if (distance > 1000)
+                wayInstructionsResponse.Append((distance / 1000).ToString("0.00")).Append(" km\n");
+            else
+                wayInstructionsResponse.Append(distance.ToString("0.00")).Append(" m\n");
+
+            wayInstructionsResponse.Append("\n").Append("Segment duration : ");
+
+            if (duration > 3600)
+                wayInstructionsResponse.Append((duration / 3600).ToString("0.00")).Append(" h\n");
+            else if (duration > 60)
+                wayInstructionsResponse.Append((duration / 60).ToString("0.00")).Append(" m\n");
+            else
+                wayInstructionsResponse.Append(duration.ToString("0.00")).Append(" s\n");
+
+            var steps = segment.steps;
+            var i = 0;
+            foreach (var s in steps)
+                wayInstructionsResponse.Append("Step ").Append(i++).Append(" -> ").Append(s.instruction).Append("\n");
+
+            return wayInstructionsResponse.ToString();
         }
 
     }

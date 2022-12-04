@@ -22,10 +22,10 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer contrats
-            string url = baseUrlApi + "contracts" + "?" + apiKey;
-            HttpResponseMessage response = await client.GetAsync(url);
+            var url = baseUrlApi + "contracts" + "?" + apiKey;
+            var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            var responseBody = await response.Content.ReadAsStringAsync();
 
             contrats = JsonSerializer.Deserialize<List<Contrat>>(responseBody);
 
@@ -34,8 +34,8 @@ namespace Proxy
 
         public static string GetContractNames()
         {
-            StringBuilder response = new StringBuilder();
-            foreach (Contrat c in contrats)
+            var response = new StringBuilder();
+            foreach (var c in contrats)
             {
                 response.Append(c.name).Append("\n");
             }
@@ -48,10 +48,10 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer stations
-            string url = baseUrlApi + "stations" + apiKey;
-            HttpResponseMessage response = await client.GetAsync(url);
+            var url = baseUrlApi + "stations" + apiKey;
+            var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            var responseBody = await response.Content.ReadAsStringAsync();
 
             return responseBody.Substring(0, 10);
         }
@@ -61,10 +61,10 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer les infos d'une station donnée
-            string url = baseUrlApi + "stations/" + name + apiKey;
-            HttpResponseMessage response = await client.GetAsync(url);
+            var url = baseUrlApi + "stations/" + name + apiKey;
+            var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            var responseBody = await response.Content.ReadAsStringAsync();
 
             return responseBody.Substring(0, 10);
         }
@@ -74,10 +74,10 @@ namespace Proxy
             client = new HttpClient();
 
             // Récupérer stations
-            string url = baseUrlApi + "stations/?contract=" + contract + "&" + apiKey;
-            HttpResponseMessage response = client.GetAsync(url).Result;
+            var url = baseUrlApi + "stations/?contract=" + contract + "&" + apiKey;
+            var response = client.GetAsync(url).Result;
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+            var responseBody = await response.Content.ReadAsStringAsync();
 
             return responseBody;
         }

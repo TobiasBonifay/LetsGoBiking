@@ -47,12 +47,12 @@ namespace RoutingServer
 
             if ( (startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration) 
             {
-                return WALKHAEDER + _ors.GetWayInstrictionsResponse(fromTo);
+                return WALKHAEDER + _ors.GetWayInstructionsResponse(fromTo);
             }
             Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
-            string response = WALKHAEDER + _ors.GetWayInstrictionsResponse(startToStation);
-            response += BIKEHAEDER + _ors.GetWayInstrictionsResponse(bikeSegment);
-            response += WALKHAEDER + _ors.GetWayInstrictionsResponse(endClosestStationToEnd);
+            string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation);
+            response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment);
+            response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd);
             return response;
         }
 
