@@ -35,24 +35,28 @@ public interface IRoutingService {
     public String getStations();
 
     /**
-     * 
      * @param fromCoords
+     * @param endClosestStation
      * @param toCoords
-     * @return
-     *     returns java.lang.String
+     * @param startClosesetStztion
+     * @return returns java.lang.String
      */
     @WebMethod(operationName = "GetWayInstructions", action = "http://tempuri.org/IRoutingService/GetWayInstructions")
     @WebResult(name = "GetWayInstructionsResult", targetNamespace = "http://tempuri.org/")
     @RequestWrapper(localName = "GetWayInstructions", targetNamespace = "http://tempuri.org/", className = "com.letsgobiking.generated.GetWayInstructions")
     @ResponseWrapper(localName = "GetWayInstructionsResponse", targetNamespace = "http://tempuri.org/", className = "com.letsgobiking.generated.GetWayInstructionsResponse")
     public String getWayInstructions(
-        @WebParam(name = "fromCoords", targetNamespace = "http://tempuri.org/")
-        String fromCoords,
-        @WebParam(name = "toCoords", targetNamespace = "http://tempuri.org/")
-        String toCoords);
+            @WebParam(name = "fromCoords", targetNamespace = "http://tempuri.org/")
+            String fromCoords,
+            @WebParam(name = "startClosesetStztion", targetNamespace = "http://tempuri.org/")
+            String startClosesetStztion,
+            @WebParam(name = "toCoords", targetNamespace = "http://tempuri.org/")
+            String toCoords,
+            @WebParam(name = "endClosestStation", targetNamespace = "http://tempuri.org/")
+            String endClosestStation);
 
     /**
-     * 
+     *
      * @param address
      * @return
      *     returns java.lang.String
@@ -67,6 +71,7 @@ public interface IRoutingService {
 
     /**
      * 
+     * @param address
      * @return
      *     returns java.lang.String
      */
@@ -74,6 +79,8 @@ public interface IRoutingService {
     @WebResult(name = "FindClosestStationResult", targetNamespace = "http://tempuri.org/")
     @RequestWrapper(localName = "FindClosestStation", targetNamespace = "http://tempuri.org/", className = "com.letsgobiking.generated.FindClosestStation")
     @ResponseWrapper(localName = "FindClosestStationResponse", targetNamespace = "http://tempuri.org/", className = "com.letsgobiking.generated.FindClosestStationResponse")
-    public String findClosestStation();
+    public String findClosestStation(
+            @WebParam(name = "address", targetNamespace = "http://tempuri.org/")
+            String address);
 
 }

@@ -1,14 +1,14 @@
 
 package com.letsgobiking.generated;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 
 /**
@@ -51,7 +51,9 @@ public class ObjectFactory {
     private final static QName _Guid_QNAME = new QName("http://schemas.microsoft.com/2003/10/Serialization/", "guid");
     private final static QName _GetStationsResponseGetStationsResult_QNAME = new QName("http://tempuri.org/", "GetStationsResult");
     private final static QName _GetWayInstructionsFromCoords_QNAME = new QName("http://tempuri.org/", "fromCoords");
+    private final static QName _GetWayInstructionsStartClosesetStztion_QNAME = new QName("http://tempuri.org/", "startClosesetStztion");
     private final static QName _GetWayInstructionsToCoords_QNAME = new QName("http://tempuri.org/", "toCoords");
+    private final static QName _GetWayInstructionsEndClosestStation_QNAME = new QName("http://tempuri.org/", "endClosestStation");
     private final static QName _GetWayInstructionsResponseGetWayInstructionsResult_QNAME = new QName("http://tempuri.org/", "GetWayInstructionsResult");
     private final static QName _GetGPSCoordsFromAddressAddress_QNAME = new QName("http://tempuri.org/", "address");
     private final static QName _GetGPSCoordsFromAddressResponseGetGPSCoordsFromAddressResult_QNAME = new QName("http://tempuri.org/", "GetGPSCoordsFromAddressResult");
@@ -416,7 +418,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
-     * 
+     *
      * @param value
      *     Java instance representing xml element's value.
      * @return
@@ -429,11 +431,20 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     *
+     * @param value Java instance representing xml element's value.
+     * @return the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "startClosesetStztion", scope = GetWayInstructions.class)
+    public JAXBElement<String> createGetWayInstructionsStartClosesetStztion(String value) {
+        return new JAXBElement<String>(_GetWayInstructionsStartClosesetStztion_QNAME, String.class, GetWayInstructions.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     *
+     * @param value Java instance representing xml element's value.
+     * @return the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
      */
     @XmlElementDecl(namespace = "http://tempuri.org/", name = "toCoords", scope = GetWayInstructions.class)
     public JAXBElement<String> createGetWayInstructionsToCoords(String value) {
@@ -442,11 +453,20 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     *
+     * @param value Java instance representing xml element's value.
+     * @return the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "endClosestStation", scope = GetWayInstructions.class)
+    public JAXBElement<String> createGetWayInstructionsEndClosestStation(String value) {
+        return new JAXBElement<String>(_GetWayInstructionsEndClosestStation_QNAME, String.class, GetWayInstructions.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     *
+     * @param value Java instance representing xml element's value.
+     * @return the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
      */
     @XmlElementDecl(namespace = "http://tempuri.org/", name = "GetWayInstructionsResult", scope = GetWayInstructionsResponse.class)
     public JAXBElement<String> createGetWayInstructionsResponseGetWayInstructionsResult(String value) {
@@ -481,11 +501,20 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     *
+     * @param value Java instance representing xml element's value.
+     * @return the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "address", scope = FindClosestStation.class)
+    public JAXBElement<String> createFindClosestStationAddress(String value) {
+        return new JAXBElement<String>(_GetGPSCoordsFromAddressAddress_QNAME, String.class, FindClosestStation.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
+     *
+     * @param value Java instance representing xml element's value.
+     * @return the new instance of {@link JAXBElement }{@code <}{@link String }{@code >}
      */
     @XmlElementDecl(namespace = "http://tempuri.org/", name = "FindClosestStationResult", scope = FindClosestStationResponse.class)
     public JAXBElement<String> createFindClosestStationResponseFindClosestStationResult(String value) {
