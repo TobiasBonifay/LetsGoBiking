@@ -38,7 +38,7 @@ public class MainLogic {
         System.out.println(response);
     }
 
-    private static Optional<String> getClosestStation(String address) {
+    static Optional<String> getClosestStation(String address) {
         final String r = iRoutingService.findClosestStation(address);
         if (r.equals("404")) {
             System.err.println("The service is not available in the current city");
