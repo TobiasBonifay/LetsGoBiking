@@ -60,7 +60,10 @@ namespace RoutingServer
                 }
             }
 
-            if (closestContract == null) { return "Service pas disponible dans votre ville, ville de " + actualCity ; }
+            if (closestContract == null)
+            {
+                return "404"; // Fatal error
+            }
 
             var proxy = new ProxyServiceClient();
             var stationsJson = proxy.GetStationByContract(closestContract.name);
@@ -132,22 +135,22 @@ namespace RoutingServer
 
             wayInstructionsResponse.Append("Segment distance : ");
             if (distance > 1000)
-                wayInstructionsResponse.Append((distance / 1000).ToString("0.00")).Append(" km\n");
+                wayInstructionsResponse.Append((distance / 1000).ToString("0.00")).Append(" km");
             else
-                wayInstructionsResponse.Append(distance.ToString("0.0")).Append(" m\n");
+                wayInstructionsResponse.Append(distance.ToString("0.0")).Append(" m");
 
             wayInstructionsResponse.Append("\n").Append("Segment duration : ");
 
             if (duration > 3600)
             {
-                wayInstructionsResponse.Append((duration / 3600).ToString("0")).Append(" h");
-                duration %= 3600;
+                wayInstructionsResponse.Append(Math.DivRem((int)duration, 3600, out int remainder)).Append(" h ");
+                duration = remainder;
             }
 
             if (duration > 60)
             {
-                wayInstructionsResponse.Append((duration / 60).ToString("0")).Append(" min");
-                duration %= 60;
+                wayInstructionsResponse.Append(Math.DivRem((int)duration, 60, out int remainder)).Append(" min ");
+                duration = remainder;
             }
             
             if (duration > 0)

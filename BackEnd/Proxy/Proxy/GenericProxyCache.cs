@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
-using System.Runtime.Serialization.Formatters;
 using System.Text.Json;
-
 
 namespace Proxy
 {
@@ -13,6 +11,10 @@ namespace Proxy
         private readonly DateTimeOffset _dtDefault;
 
         private readonly Dictionary<string, T> _cache = new Dictionary<string, T>();
+        
+        public override DefaultCacheCapabilities DefaultCacheCapabilities { get; }
+        
+        public override string Name { get; }
 
         public GenericProxyCache()
         {
@@ -30,9 +32,9 @@ namespace Proxy
             return Get<T>(cacheItemName, _dtDefault);
         }
 
-        public T Get<T>(string cacheItemName, double dt_seconds)
+        public T Get<T>(string cacheItemName, double dtSeconds)
         {
-            return Get<T>(cacheItemName, DateTimeOffset.Now.AddSeconds(dt_seconds));
+            return Get<T>(cacheItemName, DateTimeOffset.Now.AddSeconds(dtSeconds));
         }
 
         public T Get<T>(string cacheItemName, DateTimeOffset dt)
@@ -44,8 +46,7 @@ namespace Proxy
             var policy = new CacheItemPolicy();
             policy.AbsoluteExpiration = dt;
 
-            // IGOR: we need to call API here
-            // response = JsonSerializer.Deserialize<T>(JCDecauxAPIGetCall(cacheItemName).Result);
+            response = JsonSerializer.Deserialize<T>(JCD.GetCall(cacheItemName).Result);
             cache.Set(cacheItemName, response, policy);
             return response;
         }
@@ -69,7 +70,7 @@ namespace Proxy
         public override object AddOrGetExisting(string key, object value, DateTimeOffset absoluteExpiration,
             string regionName = null)
         {
-            if (this.Contains(key))
+            if (Contains(key))
                 return _cache[key];
 
             if (Add(key, value, absoluteExpiration, regionName))
@@ -79,12 +80,12 @@ namespace Proxy
 
         public override CacheItem AddOrGetExisting(CacheItem value, CacheItemPolicy policy)
         {
-            if (this.Contains(value.Key))
+            if (Contains(value.Key))
 
                 return new CacheItem(value.Key, _cache[value.Key]);
 
 
-            CacheItem item = new CacheItem(value.Key, value.Value);
+            var item = new CacheItem(value.Key, value.Value);
             if (Add(item, policy))
                 return item;
 
@@ -94,9 +95,9 @@ namespace Proxy
         public override object AddOrGetExisting(string key, object value, CacheItemPolicy policy,
             string regionName = null)
         {
-            if (this.Contains(key))
+            if (Contains(key))
                 return _cache[key];
-            CacheItem item = new CacheItem(key, value);
+            var item = new CacheItem(key, value);
             if (Add(item, policy))
                 return value;
             throw new Exception("Could not add item to cache");
@@ -104,19 +105,19 @@ namespace Proxy
 
         public override object Get(string key, string regionName = null)
         {
-            if (this.Contains(key))
+            if (Contains(key))
                 return _cache[key];
             return null;
         }
 
         public override CacheItem GetCacheItem(string key, string regionName = null)
         {
-            return this.Contains(key) ? new CacheItem(key, _cache[key]) : null;
+            return Contains(key) ? new CacheItem(key, _cache[key]) : null;
         }
 
         public override void Set(string key, object value, DateTimeOffset absoluteExpiration, string regionName = null)
         {
-            if (this.Contains(key))
+            if (Contains(key))
                 _cache[key] = (T)value;
             else
                 Add(key, value, absoluteExpiration, regionName);
@@ -124,7 +125,7 @@ namespace Proxy
 
         public override void Set(CacheItem item, CacheItemPolicy policy)
         {
-            if (this.Contains(item.Key))
+            if (Contains(item.Key))
                 _cache[item.Key] = (T)item.Value;
             else
                 Add(item, policy);
@@ -132,7 +133,7 @@ namespace Proxy
 
         public override void Set(string key, object value, CacheItemPolicy policy, string regionName = null)
         {
-            if (this.Contains(key))
+            if (Contains(key))
                 _cache[key] = (T)value;
             else
                 Add(key, value, policy, regionName);
@@ -146,7 +147,7 @@ namespace Proxy
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (string key in keys)
             {
-                if (this.Contains(key))
+                if (Contains(key))
                     dictionary.Add(key, _cache[key]);
             }
 
@@ -155,7 +156,7 @@ namespace Proxy
 
         public override object Remove(string key, string regionName = null)
         {
-            if (!this.Contains(key)) return null;
+            if (!Contains(key)) return null;
             var item = _cache[key];
             _cache.Remove(key);
             return item;
@@ -165,9 +166,6 @@ namespace Proxy
         {
             return _cache.Count;
         }
-
-        public override DefaultCacheCapabilities DefaultCacheCapabilities { get; }
-        public override string Name { get; }
 
         public override object this[string key]
         {
