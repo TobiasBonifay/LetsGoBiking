@@ -9,6 +9,8 @@ using System.Linq;
 using RoutingServer.ProxyService;
 using System.Device.Location;
 using System.Text;
+using Apache.NMS;
+using Apache.NMS.ActiveMQ;
 
 namespace RoutingServer
 {
