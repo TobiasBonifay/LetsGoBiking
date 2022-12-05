@@ -53,7 +53,7 @@ namespace RoutingServer
                 citiesToCheck.Clear();
                 if (c.cities != null)
                     citiesToCheck.AddRange(c.cities);
-                if (citiesToCheck.Contains(actualCity))
+                if (citiesToCheck.Contains(actualCity) || actualCity.Equals("Besancon"))
                 {
                     closestContract = c;
                     break;
