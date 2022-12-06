@@ -16,16 +16,20 @@ namespace RoutingServer
 {
     public class ORS
     {
-        private HttpClient httpClient;
+        string baseByBikeAddress =
+            "https://api.openrouteservice.org/v2/directions/cycling-regular?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
 
         // Foot walking way
-        string baseFootWalkingAddress = "https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
-        string baseByBikeAddress = "https://api.openrouteservice.org/v2/directions/cycling-regular?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
+        string baseFootWalkingAddress =
+            "https://api.openrouteservice.org/v2/directions/foot-walking?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76";
+
         // GPS Position
-        private string baseGPSAddress = "https://api.openrouteservice.org/geocode/search?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
-        
+        private string baseGPSAddress =
+            "https://api.openrouteservice.org/geocode/search?api_key=5b3ce3597851110001cf62483fcfcfa7f321433593113c9652931a76&text=";
+
 
         private GeoCodeResponse gpsPositionFound;
+        private HttpClient httpClient;
 
         public ORS()
         {
@@ -35,21 +39,21 @@ namespace RoutingServer
         public async Task FindGPSCoords(string address)
         {
             httpClient.DefaultRequestHeaders.Clear();
-            var response = await httpClient.GetAsync(baseGPSAddress + address );
+            var response = await httpClient.GetAsync(baseGPSAddress + address);
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
 
             gpsPositionFound = JsonSerializer.Deserialize<GeoCodeResponse>(responseBody);
-            
         }
 
         public string GetClosestStationAsync(List<Contract> contracts, string address)
         {
             FindGPSCoords(address).Wait();
             var actualCity = gpsPositionFound.features[0].properties.locality;
+            if (actualCity == null) return "404"; // Actual city not found
+
             var citiesToCheck = new List<string>();
             Contract closestContract = null;
-
             foreach (var c in contracts)
             {
                 citiesToCheck.Clear();
@@ -62,23 +66,20 @@ namespace RoutingServer
                 }
             }
 
-            if (closestContract == null)
-            {
-                return "404"; // Fatal error
-            }
+            if (closestContract == null) return "404"; // Fatal error: no locality found
 
-            var proxy = new ProxyServiceClient();
-            var stationsJson = proxy.GetStationByContract(closestContract.name);
-            var stations = JsonSerializer.Deserialize<List<Station>>(stationsJson);
-
+            var stations = JsonSerializer.Deserialize<List<Station>>(new ProxyServiceClient().GetStationByContract(closestContract.name));
+            if (stations == null) return "404"; // Fatal error: no station found
+            
             var closestStation = stations[0];
             var s1 = new GeoCoordinate(closestStation.position.latitude, closestStation.position.longitude);
-            var distMin = s1.GetDistanceTo(new GeoCoordinate(gpsPositionFound.features[0].geometry.coordinates[1], gpsPositionFound.features[0].geometry.coordinates[0]));
-            
+            var distMin = s1.GetDistanceTo(new GeoCoordinate(gpsPositionFound.features[0].geometry.coordinates[1],
+                gpsPositionFound.features[0].geometry.coordinates[0]));
+
             foreach (var s in stations)
             {
                 var s2 = new GeoCoordinate(s.position.latitude, s.position.longitude);
-                if ( (s1.GetDistanceTo(s2) < distMin) && s.totalStands.availabilities.bikes > 0) 
+                if ((s1.GetDistanceTo(s2) < distMin) && s.totalStands.availabilities.bikes > 0)
                 {
                     closestStation = s;
                     s1.Latitude = s2.Latitude;
@@ -86,7 +87,8 @@ namespace RoutingServer
                 }
             }
 
-            return closestStation.position.longitude.ToString().Replace(',', '.').Substring(0, 9) + "," + closestStation.position.latitude.ToString().Replace(',', '.').Substring(0, 9);
+            return closestStation.position.longitude.ToString().Replace(',', '.') + "," +
+                   closestStation.position.latitude.ToString().Replace(',', '.');
         }
 
         /**
@@ -94,9 +96,19 @@ namespace RoutingServer
          */
         public string GetGPSPositionFoundCoords()
         {
-            if (gpsPositionFound == null) { return "Error : Address not found"; }
-            if (gpsPositionFound.features.Count == 0) { return "Error : Unknown Address "; }
-            return  gpsPositionFound.features[0].geometry.coordinates[0].ToString().Replace(',', '.') + "," + gpsPositionFound.features[0].geometry.coordinates[1].ToString().Replace(',', '.'); // we take the first address found
+            if (gpsPositionFound == null)
+            {
+                return "Error : Address not found";
+            }
+
+            if (gpsPositionFound.features.Count == 0)
+            {
+                return "Error : Unknown Address ";
+            }
+
+            return gpsPositionFound.features[0].geometry.coordinates[0].ToString().Replace(',', '.') + "," +
+                   gpsPositionFound.features[0].geometry.coordinates[1].ToString()
+                       .Replace(',', '.'); // we take the first address found
         }
 
         /*
@@ -108,18 +120,19 @@ namespace RoutingServer
         public async Task<Segment> GetWayInstructions(string from, string to, bool usingBike)
         {
             httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept",
+                "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8");
 
             var httpAddress = baseFootWalkingAddress;
             if (usingBike) httpAddress = baseByBikeAddress;
 
             var response = await httpClient.GetAsync(httpAddress + "&start=" + from + "&end=" + to);
             response.EnsureSuccessStatusCode();
-            
+
             var responseBody = await response.Content.ReadAsStringAsync();
             RoadServiceResponse roadServiceResponse = JsonSerializer.Deserialize<RoadServiceResponse>(responseBody);
             if (roadServiceResponse != null) return roadServiceResponse.features[0].properties.segments[0];
-            
+
             Console.Write("[Serializer]Error in road service response");
             return null;
         }
@@ -154,12 +167,12 @@ namespace RoutingServer
                 wayInstructionsResponse.Append(Math.DivRem((int)duration, 60, out int remainder)).Append(" min ");
                 duration = remainder;
             }
-            
+
             if (duration > 0)
                 wayInstructionsResponse.Append(duration.ToString("0")).Append(" s");
 
             wayInstructionsResponse.Append("\n").Append("Instructions : \n");
-            
+
             Producer producer = new Producer();
             producer.init();
             var steps = segment.steps;
@@ -169,9 +182,9 @@ namespace RoutingServer
                 wayInstructionsResponse.Append("Step ").Append(i++).Append(" -> ").Append(s.instruction).Append("\n");
                 producer.SendMessage(s.instruction);
             }
+
             producer.Close();
             return wayInstructionsResponse.ToString();
         }
-
     }
 }
