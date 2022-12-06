@@ -48,7 +48,7 @@ namespace RoutingServer
             Segment fromTo = _ors.GetWayInstructions(fromCoords, toCoords, false).Result;
 
             _ors.initMessage();
-            if ( (startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration) 
+            if ( (startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration)
             {
                 _ors.addMessageToQueue(WALKHAEDER);
                 string walkInstructions = WALKHAEDER + _ors.GetWayInstructionsResponse(fromTo);
@@ -56,6 +56,9 @@ namespace RoutingServer
                 return walkInstructions;
             }
             Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
+            string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation) + SEPARATION;
+            response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment) + SEPARATION;
+            response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd) + SEPARATION;
             _ors.addMessageToQueue(WALKHAEDER);
             string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation);
             _ors.addMessageToQueue(BIKEHAEDER);
