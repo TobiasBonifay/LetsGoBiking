@@ -13,7 +13,7 @@ namespace RoutingServer
 
         public IConnection CreateConnection(string uri)
         {
-            var factory = new Apache.NMS.ActiveMQ.ConnectionFactory();
+            var factory = new Apache.NMS.ActiveMQ.ConnectionFactory(uri);
             IConnection connection = factory.CreateConnection("user", "admin");
             return connection;
         }
