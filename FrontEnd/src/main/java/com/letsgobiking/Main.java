@@ -13,6 +13,7 @@ public class Main {
             showHelp();
         } catch (ExceptionInInitializerError e) {
             System.err.println("Server is not available");
+            e.printStackTrace();
             System.exit(1);
         }
 

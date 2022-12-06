@@ -1,7 +1,9 @@
 package com.letsgobiking;
 
-import jakarta.jms.*;
+
 import org.apache.qpid.jms.JmsConnectionFactory;
+
+import javax.jms.*;
 
 public class ReceiverMq {
 
