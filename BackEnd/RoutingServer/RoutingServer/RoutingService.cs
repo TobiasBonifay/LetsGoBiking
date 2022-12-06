@@ -47,14 +47,22 @@ namespace RoutingServer
             Segment endClosestStationToEnd = _ors.GetWayInstructions(endClosestStation, toCoords, false).Result;
             Segment fromTo = _ors.GetWayInstructions(fromCoords, toCoords, false).Result;
 
+            _ors.initMessage();
             if ( (startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration) 
             {
-                return WALKHAEDER + _ors.GetWayInstructionsResponse(fromTo);
+                _ors.addMessageToQueue(WALKHAEDER);
+                string walkInstructions = WALKHAEDER + _ors.GetWayInstructionsResponse(fromTo);
+                _ors.endOfMessage();
+                return walkInstructions;
             }
             Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
+            _ors.addMessageToQueue(WALKHAEDER);
             string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation);
+            _ors.addMessageToQueue(BIKEHAEDER);
             response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment);
+            _ors.addMessageToQueue(WALKHAEDER);
             response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd);
+            _ors.endOfMessage();
             return response;
         }
 
