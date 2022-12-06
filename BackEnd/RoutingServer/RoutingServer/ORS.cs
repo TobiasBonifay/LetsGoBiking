@@ -160,11 +160,16 @@ namespace RoutingServer
 
             wayInstructionsResponse.Append("\n").Append("Instructions : \n");
             
+            Producer producer = new Producer();
+            producer.init();
             var steps = segment.steps;
             var i = 0;
             foreach (var s in steps)
+            {
                 wayInstructionsResponse.Append("Step ").Append(i++).Append(" -> ").Append(s.instruction).Append("\n");
-
+                producer.SendMessage(s.instruction);
+            }
+            producer.Close();
             return wayInstructionsResponse.ToString();
         }
 
