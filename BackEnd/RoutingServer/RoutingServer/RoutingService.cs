@@ -66,6 +66,9 @@ namespace RoutingServer
             _ors.addMessageToQueue(WALKHAEDER);
             response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd);
             _ors.endOfMessage();
+            string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation) + SEPARATION;
+            response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment) + SEPARATION;
+            response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd) + SEPARATION;
             return response;
         }
 
