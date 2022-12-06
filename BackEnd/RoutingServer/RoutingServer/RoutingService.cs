@@ -52,9 +52,9 @@ namespace RoutingServer
                 return WALKHAEDER + _ors.GetWayInstructionsResponse(fromTo);
             }
             Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
-            string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation);
-            response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment);
-            response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd);
+            string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation) + SEPARATION;
+            response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment) + SEPARATION;
+            response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd) + SEPARATION;
             return response;
         }
 

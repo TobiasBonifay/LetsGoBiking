@@ -50,3 +50,29 @@ C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiki
 C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.csproj.CopyComplete
 C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.dll
 C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.pdb
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\Proxy.dll.config
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\Proxy.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\Proxy.pdb
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Buffers.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Memory.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Numerics.Vectors.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Text.Encodings.Web.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Text.Json.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.ValueTuple.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Buffers.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Memory.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Numerics.Vectors.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Text.Encodings.Web.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Text.Json.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\bin\Debug\System.ValueTuple.xml
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.csproj.AssemblyReference.cache
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.csproj.CoreCompileInputs.cache
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.csproj.CopyComplete
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.dll
+C:\Projects\LetsGoBiking\BackEnd\Proxy\Proxy\obj\Debug\Proxy.pdb

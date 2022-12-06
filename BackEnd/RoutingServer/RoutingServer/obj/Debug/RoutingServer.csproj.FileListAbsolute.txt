@@ -79,3 +79,8 @@ C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiki
 C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.csproj.CopyComplete
 C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.dll
 C:\Users\Tobias Bonifay\Documents\MEGAsync\Documents\Public\SI4\MwSOC\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\obj\Debug\RoutingServer.pdb
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\Apache.NMS.ActiveMQ.dll
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\Apache.NMS.dll
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\ICSharpCode.SharpZipLib.pdb
+C:\Projects\LetsGoBiking\BackEnd\RoutingServer\RoutingServer\bin\Debug\ICSharpCode.SharpZipLib.xml
