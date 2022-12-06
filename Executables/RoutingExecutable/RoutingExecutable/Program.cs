@@ -20,7 +20,7 @@ namespace RoutingExecutable
             ServiceHost host = new ServiceHost(typeof(RoutingService), httpUrl);
 
             //Add a service endpoint
-            host.AddServiceEndpoint(typeof(IRoutingService), new WSHttpBinding(), "");
+            host.AddServiceEndpoint(typeof(IRoutingService), new BasicHttpBinding(), "");
 
             //Enable metadata exchange
             ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
