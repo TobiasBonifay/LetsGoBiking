@@ -9,7 +9,12 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello !");
-        showHelp();
+        try {
+            showHelp();
+        } catch (ExceptionInInitializerError e) {
+            System.err.println("Server is not available");
+            System.exit(1);
+        }
 
         while (true) {
             System.out.println("\n\nEnter a command: ");
@@ -18,6 +23,7 @@ public class Main {
                 case "p", "q", "quit" -> {
                     return;
                 }
+                case "4" -> getWayInstructionsMq();
                 case "0" -> getWayInstructions();
                 case "1" -> findClosestStation();
                 case "2" -> getGPSCoordsFromAddress();

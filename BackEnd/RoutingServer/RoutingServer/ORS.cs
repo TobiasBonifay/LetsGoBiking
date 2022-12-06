@@ -30,6 +30,7 @@ namespace RoutingServer
 
         private GeoCodeResponse gpsPositionFound;
         private HttpClient httpClient;
+        private Producer producer;
 
         public ORS()
         {
@@ -49,6 +50,8 @@ namespace RoutingServer
         public string GetClosestStationAsync(List<Contract> contracts, string address)
         {
             FindGPSCoords(address).Wait();
+            if (gpsPositionFound == null || gpsPositionFound.features.Count < 1) return "404"; // no result found
+            
             var actualCity = gpsPositionFound.features[0].properties.locality;
             if (actualCity == null) return "404"; // Actual city not found
 
@@ -172,9 +175,9 @@ namespace RoutingServer
                 wayInstructionsResponse.Append(duration.ToString("0")).Append(" s");
 
             wayInstructionsResponse.Append("\n").Append("Instructions : \n");
-
-            Producer producer = new Producer();
-            producer.init();
+            
+            producer.SendMessage(wayInstructionsResponse.ToString());
+            
             var steps = segment.steps;
             var i = 0;
             foreach (var s in steps)
@@ -182,9 +185,24 @@ namespace RoutingServer
                 wayInstructionsResponse.Append("Step ").Append(i++).Append(" -> ").Append(s.instruction).Append("\n");
                 producer.SendMessage(s.instruction);
             }
-
-            producer.Close();
             return wayInstructionsResponse.ToString();
+        }
+        
+        public void addMessageToQueue(string message)
+        {
+            producer.SendMessage(message);
+        }
+
+        public void initMessage()
+        {
+            producer = new Producer();
+            producer.init();
+        }
+
+        public void endOfMessage()
+        {
+            producer.SendMessage("end");
+            producer.Close();
         }
     }
 }

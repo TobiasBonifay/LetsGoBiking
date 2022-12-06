@@ -32,12 +32,6 @@ namespace RoutingServer
             // Create a Producer targeting the selected queue.
             _producer = _session.CreateProducer(destination);
             
-            // Finally, to send messages:
-            var message = _session.CreateTextMessage("initialized");
-            _producer.Send(message);
-
-            Console.WriteLine("Initialized");
-            Console.ReadLine();
             init();
         }
 
