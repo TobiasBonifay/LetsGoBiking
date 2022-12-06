@@ -56,12 +56,12 @@ namespace RoutingServer
                 return walkInstructions;
             }
             Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
+            _ors.addMessageToQueue(WALKHAEDER);
             string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation) + SEPARATION;
-            _ors.addMessageToQueue(WALKHAEDER);
-            response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment) + SEPARATION;
             _ors.addMessageToQueue(BIKEHAEDER);
-            response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd) + SEPARATION;
+            response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment) + SEPARATION;
             _ors.addMessageToQueue(WALKHAEDER);
+            response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd) + SEPARATION;
             _ors.endOfMessage();
             return response;
         }
