@@ -19,13 +19,12 @@ public class Main {
 
         while (true) {
             System.out.println("\n\nEnter a command: ");
-            String inputCleared = sc.nextLine().trim().substring(0, 1).toLowerCase();
-            switch (inputCleared) {
+            String inputCleared = sc.nextLine().trim().toLowerCase();
+            if (inputCleared.length() > 1) return;
+            switch (inputCleared.substring(0, 1)) {
                 case "p":
                 case "q":
-                case "quit": {
                     return;
-                }
                 case "4":
                     getWayInstructionsMq();
                     break;
@@ -43,7 +42,6 @@ public class Main {
                     break;
                 default:
                     showHelp();
-                    break;
             }
         }
     }
