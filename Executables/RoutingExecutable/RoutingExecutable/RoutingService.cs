@@ -48,23 +48,23 @@ namespace RoutingExecutable
             Segment endClosestStationToEnd = _ors.GetWayInstructions(endClosestStation, toCoords, false).Result;
             Segment fromTo = _ors.GetWayInstructions(fromCoords, toCoords, false).Result;
 
-            //_ors.initMessage();
+            _ors.initMessage();
             if ((startToStation.duration + endClosestStationToEnd.duration) > fromTo.duration)
             {
-                //_ors.addMessageToQueue(WALKHAEDER);
+                _ors.addMessageToQueue(WALKHAEDER);
                 string walkInstructions = WALKHAEDER + _ors.GetWayInstructionsResponse(fromTo);
-                //_ors.endOfMessage();
+                _ors.endOfMessage();
                 return walkInstructions;
             }
             Segment bikeSegment = _ors.GetWayInstructions(startClosesetStation, endClosestStation, true).Result;
 
-            //_ors.addMessageToQueue(WALKHAEDER);
+            _ors.addMessageToQueue(WALKHAEDER);
             string response = WALKHAEDER + _ors.GetWayInstructionsResponse(startToStation) + SEPARATION;
-            //_ors.addMessageToQueue(BIKEHAEDER);
+            _ors.addMessageToQueue(BIKEHAEDER);
             response += BIKEHAEDER + _ors.GetWayInstructionsResponse(bikeSegment) + SEPARATION;
-            //_ors.addMessageToQueue(WALKHAEDER);
+            _ors.addMessageToQueue(WALKHAEDER);
             response += WALKHAEDER + _ors.GetWayInstructionsResponse(endClosestStationToEnd) + SEPARATION;
-            //_ors.endOfMessage();
+            _ors.endOfMessage();
 
             return response;
         }

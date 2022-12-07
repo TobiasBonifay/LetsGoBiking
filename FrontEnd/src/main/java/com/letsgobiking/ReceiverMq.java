@@ -1,9 +1,8 @@
 package com.letsgobiking;
 
 
+import jakarta.jms.*;
 import org.apache.qpid.jms.JmsConnectionFactory;
-
-import javax.jms.*;
 
 public class ReceiverMq {
 
@@ -13,7 +12,7 @@ public class ReceiverMq {
 
     public static void fetchData() {
         final JmsConnectionFactory factory = new JmsConnectionFactory("amqp://localhost:5672");
-        try (Connection connection = factory.createConnection("user", "admin")) {
+        try (jakarta.jms.Connection connection = factory.createConnection("user", "admin")) {
             connection.start();
             try (Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE)) {
                 final Destination destination = session.createQueue("ITINERARY");
@@ -34,7 +33,8 @@ public class ReceiverMq {
             System.out.println("Waiting for messages...");
             while (noInfinitLoop-- > 0) {
                 Message msg = consumer.receive();
-                if (msg instanceof TextMessage textMessage) {
+                if (msg instanceof TextMessage) {
+                    TextMessage textMessage = (TextMessage) msg;
                     String body = textMessage.getText();
                     System.out.println("[MQ] " + body);
 
@@ -59,5 +59,4 @@ public class ReceiverMq {
             }
         }
     }
-
 }
