@@ -14,13 +14,17 @@ public class ReceiverMq {
         final JmsConnectionFactory factory = new JmsConnectionFactory("amqp://localhost:5672");
         try (jakarta.jms.Connection connection = factory.createConnection("user", "admin")) {
             connection.start();
-            try (Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE)) {
-                final Destination destination = session.createQueue("ITINERARY");
-                consumeMessage(session, destination);
-            } catch (JMSException e) {
-                e.printStackTrace();
-            }
+            createSessionFromConnection(connection);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createSessionFromConnection(Connection connection) {
+        try (Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE)) {
+            final Destination destination = session.createQueue("ITINERARY");
+            consumeMessage(session, destination);
+        } catch (JMSException e) {
             e.printStackTrace();
         }
     }
