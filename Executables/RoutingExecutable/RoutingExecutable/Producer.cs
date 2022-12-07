@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Apache.NMS;
 using Apache.NMS.ActiveMQ;
-using ConnectionFactory = RoutingExecutable.ORSClasses.ConnectionFactory;
 
 namespace RoutingExecutable
 {
@@ -20,13 +19,12 @@ namespace RoutingExecutable
 
         private ISession _session;
 
-        private ConnectionFactory factory = new ConnectionFactory();
+        private ConnectionF factory = new ConnectionF();
 
         public Producer()
         {
             // Create a single Connection from the Connection Factory.
             _connection = factory.CreateConnection();
-            _connection.Start();
 
             // Create a session from the Connection.
             _session = _connection.CreateSession();

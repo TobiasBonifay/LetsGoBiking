@@ -98,7 +98,7 @@
     </Compile>
     <Compile Include="JCDClasses\Contrat.cs" />
     <Compile Include="JCDClasses\Station.cs" />
-    <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="ConnectionF.cs" />
     <Compile Include="ORSClasses\Directions.cs" />
     <Compile Include="ORSClasses\GeoCode.cs" />
     <Compile Include="IRoutingService.cs" />
