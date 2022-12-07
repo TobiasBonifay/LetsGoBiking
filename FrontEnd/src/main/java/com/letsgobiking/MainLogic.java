@@ -39,7 +39,7 @@ public class MainLogic {
         System.out.println("Find the closest station");
         System.out.println("Enter an address: ");
         String address = sc.nextLine();
-        System.out.println(getClosestStation(address));
+        getClosestStation(address).ifPresent(System.out::println);
     }
 
     static void getGPSCoordsFromAddress() {
