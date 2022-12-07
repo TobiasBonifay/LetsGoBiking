@@ -140,6 +140,7 @@
     <Compile Include="ORSClasses\Step.cs" />
     <Compile Include="ORSClasses\StreetMapResponse.cs" />
     <Compile Include="Producer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutingService.cs" />
   </ItemGroup>

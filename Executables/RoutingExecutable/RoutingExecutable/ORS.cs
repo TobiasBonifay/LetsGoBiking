@@ -176,14 +176,14 @@ namespace RoutingExecutable.ORSClasses
 
             wayInstructionsResponse.Append("\n").Append("Instructions : \n");
 
-            producer.SendMessage(wayInstructionsResponse.ToString());
+            //producer.SendMessage(wayInstructionsResponse.ToString());
 
             var steps = segment.steps;
             var i = 0;
             foreach (var s in steps)
             {
                 wayInstructionsResponse.Append("Step ").Append(i++).Append(" -> ").Append(s.instruction).Append("\n");
-                producer.SendMessage(s.instruction);
+                //producer.SendMessage(s.instruction);
             }
             return wayInstructionsResponse.ToString();
         }
