@@ -21,15 +21,29 @@ public class Main {
             System.out.println("\n\nEnter a command: ");
             String inputCleared = sc.nextLine().trim().substring(0, 1).toLowerCase();
             switch (inputCleared) {
-                case "p", "q", "quit" -> {
+                case "p":
+                case "q":
+                case "quit": {
                     return;
                 }
-                case "4" -> getWayInstructionsMq();
-                case "0" -> getWayInstructions();
-                case "1" -> findClosestStation();
-                case "2" -> getGPSCoordsFromAddress();
-                case "3" -> getStations();
-                default -> showHelp();
+                case "4":
+                    getWayInstructionsMq();
+                    break;
+                case "0":
+                    getWayInstructions();
+                    break;
+                case "1":
+                    findClosestStation();
+                    break;
+                case "2":
+                    getGPSCoordsFromAddress();
+                    break;
+                case "3":
+                    getStations();
+                    break;
+                default:
+                    showHelp();
+                    break;
             }
         }
     }
