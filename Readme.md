@@ -3,7 +3,7 @@
 
 <p>Launch both .exe, Proxy and Router services</p>
 <p>Launch activemq on a terminal</p>
-<p>Finally, start the jar</p>
+<p>Finally, start the Main java class of the FrontEnd section</p>
 
 
 ## About our work
